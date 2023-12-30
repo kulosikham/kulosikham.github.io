@@ -46,3 +46,9 @@ main {
 footer {
     color: #fff;
 }
+
+/* Centering the Carousel Images */
+.carousel-item img {
+    display: block;
+    margin: 0 auto; /* Membuat gambar berada di tengah */
+}
