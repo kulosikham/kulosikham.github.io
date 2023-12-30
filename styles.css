@@ -28,6 +28,16 @@ header {
     margin-left: 15px;
 }
 
+/* Hamburger Menu Styles */
+.navbar-toggler {
+    border: none;
+    background-color: transparent; /* Menjadikan latar belakang transparan */
+}
+
+.navbar-toggler-icon {
+    background-color: #333;
+}
+
 /* Page Content Styles */
 main {
     padding: 50px 0;
