@@ -52,3 +52,15 @@ footer {
     display: block;
     margin: 0 auto; /* Membuat gambar berada di tengah */
 }
+
+/* Gaya untuk menyesuaikan ukuran logo dengan teks */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    max-height: 30px; /* Ubah ukuran logo sesuai kebutuhan */
+    margin-right: 10px; /* Berikan margin jika diperlukan */
+}
+
