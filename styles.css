@@ -30,8 +30,7 @@ header {
 
 /* Hamburger Menu Styles */
 .navbar-toggler {
-    border: none;
-    background-color: transparent; /* Menjadikan latar belakang transparan */
+    border: transparent;
 }
 
 .navbar-toggler-icon {
