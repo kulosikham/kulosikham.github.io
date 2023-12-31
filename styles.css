@@ -70,3 +70,10 @@ footer {
     height: auto;
     max-height: 400px; /* Sesuaikan tinggi maksimum dengan kebutuhan Anda */
 }
+
+/* Sembunyikan slider pada desktop */
+@media (min-width: 768px) {
+    #carouselExampleIndicators {
+        display: none;
+    }
+}
