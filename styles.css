@@ -94,3 +94,13 @@ footer {
 .btn-beli-sekarang:hover {
     background-color: #5A5653; /* Ubah warna latar belakang tombol saat di-hover */
 }
+
+/* Mengatur jarak antar kotak */
+.row > .col-md-4 {
+    margin-bottom: 30px;
+}
+
+/* Mengatur teks di bawah gambar */
+.col-md-4 p {
+    margin-top: 10px;
+}
