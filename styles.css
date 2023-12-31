@@ -64,3 +64,9 @@ footer {
     margin-right: 10px; /* Berikan margin jika diperlukan */
 }
 
+/* Responsifkan gambar slider */
+.carousel-item img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
