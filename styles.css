@@ -100,7 +100,21 @@ footer {
     margin-bottom: 30px;
 }
 
+/* Gaya untuk kotak produk */
+.produk-box {
+    border: 1px solid #ccc; /* Tambahkan border */
+    padding: 15px; /* Berikan padding agar isi terlihat lebih jelas */
+    text-align: center; /* Agar gambar dan teks berada di tengah */
+}
+
+/* Mengatur jarak antar kotak */
+.col-md-4 {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
 /* Mengatur teks di bawah gambar */
-.col-md-4 p {
+.produk-box p {
     margin-top: 10px;
 }
