@@ -118,3 +118,10 @@ footer {
 .produk-box p {
     margin-top: 10px;
 }
+
+/* Perkecil ukuran gambar */
+.produk-box img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px; /* Sesuaikan tinggi maksimum gambar */
+}
