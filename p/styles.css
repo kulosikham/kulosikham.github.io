@@ -129,31 +129,20 @@ footer {
 }
 
 /* Gaya untuk search bar */
-form {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center; /* Memusatkan search bar di tengah */
+.container {
+    text-align: center; /* Memusatkan konten di tengah */
 }
 
 .form-control {
-    width: 300px;
+    width: 60%; /* Menyesuaikan lebar search bar */
+    margin-bottom: 20px; /* Menambah jarak bawah dari search bar */
 }
 
-/* Gaya untuk kategori */
-h2 {
-    margin-top: 30px;
-    text-align: center; /* Memusatkan judul kategori di tengah */
+/* Gaya untuk daftar produk */
+#productList {
+    margin-top: 20px; /* Menambah jarak atas dari daftar produk */
 }
 
-.list-group {
-    max-width: 300px;
-    margin: 0 auto; /* Memusatkan kategori di tengah */
-}
-
-.list-group-item {
-    cursor: pointer;
-}
-
-.list-group-item:hover {
-    background-color: #f0f0f0;
+.produk-box h3 {
+    text-align: center; /* Memusatkan nama produk di tengah */
 }
