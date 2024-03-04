@@ -130,12 +130,13 @@ footer {
 
 /* Gaya untuk search bar */
 .container {
-    text-align: center; /* Memusatkan konten di tengah */
+    display: flex;
+    justify-content: center; /* Memusatkan kotak pencarian di tengah */
+    margin-bottom: 20px; /* Menambah jarak bawah dari search bar */
 }
 
 .form-control {
     width: 60%; /* Menyesuaikan lebar search bar */
-    margin-bottom: 20px; /* Menambah jarak bawah dari search bar */
 }
 
 /* Gaya untuk daftar produk */
@@ -145,12 +146,4 @@ footer {
 
 .produk-box h3 {
     text-align: center; /* Memusatkan nama produk di tengah */
-}
-
-/* Gaya untuk kotak pencarian pada desktop view */
-@media (min-width: 768px) {
-    .container {
-        display: flex;
-        justify-content: flex-end; /* Memposisikan kotak pencarian ke kanan */
-    }
 }
