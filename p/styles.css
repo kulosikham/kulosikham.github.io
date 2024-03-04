@@ -130,13 +130,12 @@ footer {
 
 /* Gaya untuk search bar */
 .container {
-    display: flex;
-    justify-content: center; /* Memusatkan kotak pencarian di tengah */
-    margin-bottom: 20px; /* Menambah jarak bawah dari search bar */
+    text-align: center; /* Memusatkan konten di tengah */
 }
 
 .form-control {
     width: 60%; /* Menyesuaikan lebar search bar */
+    margin-bottom: 20px; /* Menambah jarak bawah dari search bar */
 }
 
 /* Gaya untuk daftar produk */
