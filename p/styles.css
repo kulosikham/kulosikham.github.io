@@ -146,3 +146,11 @@ footer {
 .produk-box h3 {
     text-align: center; /* Memusatkan nama produk di tengah */
 }
+
+/* Gaya untuk kotak pencarian pada desktop view */
+@media (min-width: 768px) {
+    .container {
+        display: flex;
+        justify-content: flex-end; /* Memposisikan kotak pencarian ke kanan */
+    }
+}
