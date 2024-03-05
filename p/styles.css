@@ -146,3 +146,16 @@ footer {
 .produk-box h3 {
     text-align: center; /* Memusatkan nama produk di tengah */
 }
+
+/* Navbar Styles */
+.navbar-nav {
+    margin-left: auto; /* Memindahkan navbar ke kiri */
+}
+
+/* Product Box Styles */
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 50%; /* Menampilkan dua produk per baris di perangkat mobile */
+        max-width: 50%;
+    }
+}
