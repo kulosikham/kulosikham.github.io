@@ -1,4 +1,4 @@
-// JavaScript code to handle product search
+// JavaScript code to handle automatic product filtering
 document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.querySelector('.form-control');
     const products = document.querySelectorAll('.produk-box');
