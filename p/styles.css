@@ -128,34 +128,20 @@ footer {
     max-height: 150px; /* Sesuaikan tinggi maksimum gambar */
 }
 
-/* Gaya untuk search bar */
-.container {
-    text-align: center; /* Memusatkan konten di tengah */
+/* Add styles for search box */
+.input-group {
+    margin-bottom: 20px;
 }
 
-.form-control {
-    width: 60%; /* Menyesuaikan lebar search bar */
-    margin-bottom: 20px; /* Menambah jarak bawah dari search bar */
+/* Add styles for product boxes */
+.produk-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
 }
 
-/* Gaya untuk daftar produk */
-#productList {
-    margin-top: 20px; /* Menambah jarak atas dari daftar produk */
-}
-
-.produk-box h3 {
-    text-align: center; /* Memusatkan nama produk di tengah */
-}
-
-/* Navbar Styles */
-.navbar-nav {
-    margin-left: auto; /* Memindahkan navbar ke kiri */
-}
-
-/* Product Box Styles */
-@media (max-width: 768px) {
-    .col-md-4 {
-        flex: 0 0 50%; /* Menampilkan dua produk per baris di perangkat mobile */
-        max-width: 50%;
-    }
+.produk-box img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
 }
