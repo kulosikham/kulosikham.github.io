@@ -19,6 +19,12 @@ document.getElementById('ipForm').addEventListener('submit', function (e) {
                 ISP: ${data.org}
                 ASN: ${data.asn}
                 Organization: ${data.org}
+                Language: ${navigator.language}
+                Browser: ${navigator.userAgent}
+                Platform: ${navigator.platform}
+                Screen Resolution: ${window.screen.width}x${window.screen.height}
+                Color Depth: ${window.screen.colorDepth}-bit
+                Cookie Enabled: ${navigator.cookieEnabled ? 'Yes' : 'No'}
             `;
             typeText(resultDiv, text, 0);
         })
