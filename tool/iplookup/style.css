@@ -11,6 +11,10 @@ body {
 
 #container {
     text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"] {
@@ -26,9 +30,24 @@ input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#result p {
+    margin-bottom: 10px;
+}
+
+#result strong {
+    font-weight: bold;
+    margin-right: 5px;
 }
