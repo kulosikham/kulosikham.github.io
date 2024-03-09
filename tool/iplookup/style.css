@@ -1,34 +1,44 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #000;
 }
 
 #container {
-    text-align: center;
+    text-align: left;
+    color: #00ff00;
 }
 
-input[type="text"] {
+.cmd-text {
+    border: 2px solid #00ff00;
+    padding: 10px;
+    margin-top: 20px;
+    width: 500px;
+    height: 300px;
+    overflow-y: auto;
+    background-color: #000;
+    font-size: 16px;
+}
+
+input[type="text"],
+input[type="submit"] {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
     padding: 8px;
     margin-bottom: 10px;
-    width: 300px;
-    font-size: 16px;
-}
-
-input[type="submit"] {
-    padding: 8px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+    background-color: #000;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    outline: none;
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #00ff00;
+    color: #000;
+    cursor: pointer;
 }
