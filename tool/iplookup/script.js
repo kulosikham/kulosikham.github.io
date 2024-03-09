@@ -8,21 +8,21 @@ document.getElementById('ipForm').addEventListener('submit', function (e) {
             resultDiv.innerHTML = ''; // Clear previous content
             const text = `
                 IP Address: ${data.ip}
-                Hostname: ${data.hostname}
-                City: ${data.city}
-                Region: ${data.region}
-                Country: ${data.country_name}
-                Postal Code: ${data.postal}
-                Latitude: ${data.latitude}
-                Longitude: ${data.longitude}
-                Timezone: ${data.timezone}
-                ISP: ${data.org}
-                ASN: ${data.asn}
-                Organization: ${data.org}
-                Language: ${navigator.language}
-                Browser: ${navigator.userAgent}
-                Platform: ${navigator.platform}
-                Screen Resolution: ${window.screen.width}x${window.screen.height}
+                Hostname: ${data.hostname || 'N/A'}
+                City: ${data.city || 'N/A'}
+                Region: ${data.region || 'N/A'}
+                Country: ${data.country_name || 'N/A'}
+                Postal Code: ${data.postal || 'N/A'}
+                Latitude: ${data.latitude || 'N/A'}
+                Longitude: ${data.longitude || 'N/A'}
+                Timezone: ${data.timezone || 'N/A'}
+                ISP: ${data.org || 'N/A'}
+                ASN: ${data.asn || 'N/A'}
+                Organization: ${data.org || 'N/A'}
+                Language: ${navigator.language || 'N/A'}
+                Browser: ${navigator.userAgent || 'N/A'}
+                Platform: ${navigator.platform || 'N/A'}
+                Screen Resolution: ${window.screen.width}x${window.screen.height} pixels
                 Color Depth: ${window.screen.colorDepth}-bit
                 Cookie Enabled: ${navigator.cookieEnabled ? 'Yes' : 'No'}
             `;
