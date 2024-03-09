@@ -4,29 +4,36 @@ document.getElementById('ipForm').addEventListener('submit', function (e) {
     fetch('https://ipapi.co/' + ipAddress + '/json/')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('result').innerHTML = `
-                <p><strong>IP Address:</strong> ${data.ip}</p>
-                <p><strong>Hostname:</strong> ${data.hostname}</p>
-                <p><strong>City:</strong> ${data.city}</p>
-                <p><strong>Region:</strong> ${data.region}</p>
-                <p><strong>Country:</strong> ${data.country_name}</p>
-                <p><strong>Postal Code:</strong> ${data.postal}</p>
-                <p><strong>Latitude:</strong> ${data.latitude}</p>
-                <p><strong>Longitude:</strong> ${data.longitude}</p>
-                <p><strong>Timezone:</strong> ${data.timezone}</p>
-                <p><strong>ISP:</strong> ${data.org}</p>
-                <p><strong>ASN:</strong> ${data.asn}</p>
-                <p><strong>Organization:</strong> ${data.org}</p>
-                <p><strong>Language:</strong> ${navigator.language}</p>
-                <p><strong>Browser:</strong> ${navigator.userAgent}</p>
-                <p><strong>Platform:</strong> ${navigator.platform}</p>
-                <p><strong>Screen Resolution:</strong> ${window.screen.width}x${window.screen.height}</p>
-                <p><strong>Color Depth:</strong> ${window.screen.colorDepth}-bit</p>
-                <p><strong>Cookie Enabled:</strong> ${navigator.cookieEnabled ? 'Yes' : 'No'}</p>
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = ''; // Clear previous content
+            const text = `
+                IP Address: ${data.ip}
+                Hostname: ${data.hostname}
+                City: ${data.city}
+                Region: ${data.region}
+                Country: ${data.country_name}
+                Postal Code: ${data.postal}
+                Latitude: ${data.latitude}
+                Longitude: ${data.longitude}
+                Timezone: ${data.timezone}
+                ISP: ${data.org}
+                ASN: ${data.asn}
+                Organization: ${data.org}
             `;
+            typeText(resultDiv, text, 0);
         })
         .catch(error => {
             console.error('Error:', error);
-            document.getElementById('result').innerHTML = '<p>Error fetching data. Please try again later.</p>';
+            document.getElementById('result').innerHTML = 'Error fetching data. Please try again later.';
         });
 });
+
+function typeText(element, text, index) {
+    if (index < text.length) {
+        element.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(function() {
+            typeText(element, text, index);
+        }, Math.floor(Math.random() * 50) + 50); // Random delay for typing effect
+    }
+}
