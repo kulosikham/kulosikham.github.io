@@ -4,25 +4,31 @@ document.getElementById('ipForm').addEventListener('submit', function (e) {
     fetch('https://ipapi.co/' + ipAddress + '/json/')
         .then(response => response.json())
         .then(data => {
+            // Menentukan warna teks
+            var textColor = ''; // default: hitam
+            if (data.ip === undefined || data.country_name === undefined || data.region === undefined || data.city === undefined || data.postal === undefined || data.latitude === undefined || data.longitude === undefined || data.timezone === undefined || data.org === undefined || data.asn === undefined) {
+                textColor = 'red'; // Jika ada nilai yang tidak terdefinisi, ubah warna teks menjadi merah
+            }
+
+            // Menampilkan hasil
             document.getElementById('result').innerHTML = `
-                <p><strong>IP Address:</strong> ${data.ip}</p>
-                <p><strong>Hostname:</strong> ${data.hostname}</p>
-                <p><strong>City:</strong> ${data.city}</p>
-                <p><strong>Region:</strong> ${data.region}</p>
-                <p><strong>Country:</strong> ${data.country_name}</p>
-                <p><strong>Postal Code:</strong> ${data.postal}</p>
-                <p><strong>Latitude:</strong> ${data.latitude}</p>
-                <p><strong>Longitude:</strong> ${data.longitude}</p>
-                <p><strong>Timezone:</strong> ${data.timezone}</p>
-                <p><strong>ISP:</strong> ${data.org}</p>
-                <p><strong>ASN:</strong> ${data.asn}</p>
-                <p><strong>Organization:</strong> ${data.org}</p>
-                <p><strong>Language:</strong> ${navigator.language}</p>
-                <p><strong>Browser:</strong> ${navigator.userAgent}</p>
-                <p><strong>Platform:</strong> ${navigator.platform}</p>
-                <p><strong>Screen Resolution:</strong> ${window.screen.width}x${window.screen.height}</p>
-                <p><strong>Color Depth:</strong> ${window.screen.colorDepth}-bit</p>
-                <p><strong>Cookie Enabled:</strong> ${navigator.cookieEnabled ? 'Yes' : 'No'}</p>
+                <p><strong style="color: ${textColor};">IP Address:</strong> ${data.ip}</p>
+                <p><strong style="color: ${textColor};">Country:</strong> ${data.country_name}</p>
+                <p><strong style="color: ${textColor};">Region:</strong> ${data.region}</p>
+                <p><strong style="color: ${textColor};">City:</strong> ${data.city}</p>
+                <p><strong style="color: ${textColor};">Postal Code:</strong> ${data.postal}</p>
+                <p><strong style="color: ${textColor};">Latitude:</strong> ${data.latitude}</p>
+                <p><strong style="color: ${textColor};">Longitude:</strong> ${data.longitude}</p>
+                <p><strong style="color: ${textColor};">Timezone:</strong> ${data.timezone}</p>
+                <p><strong style="color: ${textColor};">ISP:</strong> ${data.org}</p>
+                <p><strong style="color: ${textColor};">ASN:</strong> ${data.asn}</p>
+                <p><strong style="color: ${textColor};">Organization:</strong> ${data.org}</p>
+                <p><strong style="color: ${textColor};">Language:</strong> ${navigator.language}</p>
+                <p><strong style="color: ${textColor};">Browser:</strong> ${navigator.userAgent}</p>
+                <p><strong style="color: ${textColor};">Platform:</strong> ${navigator.platform}</p>
+                <p><strong style="color: ${textColor};">Screen Resolution:</strong> ${window.screen.width}x${window.screen.height}</p>
+                <p><strong style="color: ${textColor};">Color Depth:</strong> ${window.screen.colorDepth}-bit</p>
+                <p><strong style="color: ${textColor};">Cookie Enabled:</strong> ${navigator.cookieEnabled ? 'Yes' : 'No'}</p>
             `;
         })
         .catch(error => {
