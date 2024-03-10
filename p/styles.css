@@ -43,9 +43,9 @@ footer {
     padding: 10px 0;
 }
 
-/* Gaya untuk kartu produk */
+/* Product Card Styles */
 .produk-card {
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; /* Border for product card */
     margin-bottom: 20px;
 }
 
@@ -59,7 +59,7 @@ footer {
 }
 
 .produk-card .card-title {
-    font-weight: bold; /* Tulisan Harga di bold */
+    font-weight: bold;
 }
 
 .produk-card .btn-primary {
@@ -70,9 +70,4 @@ footer {
 .produk-card .btn-primary:hover {
     background-color: #5A5653;
     border-color: #5A5653;
-}
-
-/* Tambahkan border di setiap produk */
-.produk-card {
-    border: 1px solid #ccc;
 }
