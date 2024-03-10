@@ -71,3 +71,9 @@ footer {
     background-color: #5A5653;
     border-color: #5A5653;
 }
+
+/* Gaya untuk logo */
+.logo {
+    max-height: 50px; /* Ubah ukuran maksimum tinggi logo sesuai kebutuhan */
+    margin-right: 10px; /* Berikan margin jika diperlukan */
+}
