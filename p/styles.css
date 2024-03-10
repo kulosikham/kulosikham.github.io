@@ -59,7 +59,7 @@ footer {
 }
 
 .produk-card .card-title {
-    font-weight: bold;
+    font-weight: bold; /* Tulisan Harga di bold */
 }
 
 .produk-card .btn-primary {
@@ -70,4 +70,9 @@ footer {
 .produk-card .btn-primary:hover {
     background-color: #5A5653;
     border-color: #5A5653;
+}
+
+/* Tambahkan border di setiap produk */
+.produk-card {
+    border: 1px solid #ccc;
 }
