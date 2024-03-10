@@ -43,17 +43,31 @@ footer {
     padding: 10px 0;
 }
 
-/* Gaya untuk kotak produk */
-.produk-box {
+/* Gaya untuk kartu produk */
+.produk-card {
     border: 1px solid #ccc;
-    padding: 15px;
-    text-align: center;
-    margin-bottom: 20px; /* Tambahkan jarak antar produk */
+    margin-bottom: 20px;
 }
 
-/* Perkecil ukuran gambar */
-.produk-box img {
+.produk-card img {
     max-width: 100%;
     height: auto;
-    max-height: 150px;
+}
+
+.produk-card .card-body {
+    padding: 20px;
+}
+
+.produk-card .card-title {
+    font-weight: bold;
+}
+
+.produk-card .btn-primary {
+    background-color: #2E2A27;
+    border-color: #2E2A27;
+}
+
+.produk-card .btn-primary:hover {
+    background-color: #5A5653;
+    border-color: #5A5653;
 }
