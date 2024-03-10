@@ -1,0 +1,73 @@
+/* Global Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    margin-left: 15px;
+}
+
+/* Hamburger Menu Styles */
+.navbar-toggler {
+    border: transparent;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
+/* Footer Styles */
+footer {
+    color: #fff;
+    background-color: #2E2A27;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Gaya untuk kartu produk */
+.produk-card {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.produk-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.produk-card .card-body {
+    padding: 20px;
+}
+
+.produk-card .card-title {
+    font-weight: bold;
+}
+
+.produk-card .btn-primary {
+    background-color: #2E2A27;
+    border-color: #2E2A27;
+}
+
+.produk-card .btn-primary:hover {
+    background-color: #5A5653;
+    border-color: #5A5653;
+}
