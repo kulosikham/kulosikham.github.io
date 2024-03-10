@@ -43,9 +43,9 @@ footer {
     padding: 10px 0;
 }
 
-/* Product Card Styles */
+/* Gaya untuk kartu produk */
 .produk-card {
-    border: 1px solid #ccc; /* Border for product card */
+    border: 1px solid #ccc;
     margin-bottom: 20px;
 }
 
