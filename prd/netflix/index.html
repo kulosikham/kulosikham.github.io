@@ -67,7 +67,27 @@
                     <div class="mt-4 mb-4">
                     <p><strong>Garansi:</strong></p>
                         <p>30 Hari ×1</p>
-                    <a href="#" class="btn btn-beli-sekarang">Check Details</a>
+                    <button type="button" class="btn btn-beli-sekarang" data-bs-toggle="modal" data-bs-target="#productDetailsModal">Check Details</button>
+                        <!-- Modal for Product Details -->
+<div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productDetailsModalLabel">Product Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Netflix 1: Rp23.000</p>
+                <p>Netflix 2: Rp28.000</p>
+                <!-- Add more details as needed -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
                     </div>
                 </div>
             </div>
