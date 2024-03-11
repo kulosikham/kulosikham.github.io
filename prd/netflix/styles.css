@@ -134,12 +134,15 @@ footer {
     max-height: 400px; /* Enlarge the Netflix image */
 }
 
+.produk-view-box h2,
+.produk-view-box p {
+    text-align: left; /* Align text to the left */
+}
+
 .produk-view-box h2 {
     margin-bottom: 10px; /* Add margin below the product name */
 }
 
 .produk-view-box p {
     margin-bottom: 15px; /* Add margin below each paragraph */
-}
-each paragraph */
 }
