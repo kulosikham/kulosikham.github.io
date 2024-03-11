@@ -81,7 +81,7 @@ footer {
 
 /* Button Styles */
 .btn-beli-sekarang {
-    padding: 10px 20px;
+    padding: 12px 30px; /* Widen the button */
     font-size: 1.2em;
     text-decoration: none;
     background-color: #2E2A27; /* Change button background color */
@@ -102,9 +102,8 @@ footer {
 
 /* Product Box Styles */
 .produk-box {
-    border: 1px solid #ccc; /* Add border */
     padding: 15px; /* Add padding for better visibility */
-    text-align: center; /* Center image and text */
+    text-align: left; /* Align text to the left */
 }
 
 .col-md-4 {
@@ -120,20 +119,19 @@ footer {
 .produk-box img {
     max-width: 100%;
     height: auto;
-    max-height: 150px; /* Adjust maximum height of the image */
+    max-height: 250px; /* Enlarge the Netflix image */
 }
 
 /* Product View Styles */
 .produk-view-box {
-    border: 1px solid #ccc; /* Add border */
     padding: 20px; /* Add padding for better visibility */
-    text-align: center; /* Center the content */
+    text-align: left; /* Align text to the left */
 }
 
 .produk-view-box img {
     max-width: 100%;
     height: auto;
-    max-height: 200px; /* Adjust maximum height of the image */
+    max-height: 400px; /* Enlarge the Netflix image */
 }
 
 .produk-view-box h2 {
@@ -142,4 +140,6 @@ footer {
 
 .produk-view-box p {
     margin-bottom: 15px; /* Add margin below each paragraph */
+}
+each paragraph */
 }
