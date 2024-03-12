@@ -1,0 +1,155 @@
+/* Global Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    margin-left: 15px;
+}
+
+/* Hamburger Menu Styles */
+.navbar-toggler {
+    border: transparent;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
+/* Page Content Styles */
+main {
+    padding: 50px 0;
+}
+
+/* Footer Styles */
+footer {
+    color: #fff;
+    background-color: #2E2A27; /* Change footer background color */
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Centering the Carousel Images */
+.carousel-item img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Adjusting the logo size with text */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    max-height: 30px; /* Adjust logo size as needed */
+    margin-right: 10px; /* Add margin if needed */
+}
+
+/* Responsiveness for slider images */
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px; /* Adjust maximum height as needed */
+}
+
+/* Hide slider on desktop */
+@media (min-width: 768px) {
+    #carouselExampleIndicators {
+        display: none;
+    }
+}
+
+/* Button Styles */
+.btn-beli-sekarang {
+    padding: 12px 0; /* Adjust padding */
+    font-size: 1.2em;
+    text-decoration: none;
+    background-color: #2E2A27; /* Change button background color */
+    border-color: #2E2A27; /* Change button border color if needed */
+    color: #fff; /* Change button text color */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make the button width 100% */
+}
+
+.btn-beli-sekarang:hover {
+    background-color: #5A5653; /* Change button background color on hover */
+}
+
+/* Adjusting spacing between product boxes */
+.row > .col-md-4 {
+    margin-bottom: 30px;
+}
+
+/* Product Box Styles */
+.produk-box {
+    padding: 15px; /* Add padding for better visibility */
+    text-align: left; /* Align text to the left */
+}
+
+.col-md-4 {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.produk-box img {
+    max-width: 100%;
+    height: auto;
+    max-height: 250px; /* Enlarge the Netflix image */
+}
+
+/* Product View Styles */
+.produk-view-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Add padding for better visibility */
+    text-align: left; /* Align text to the left */
+}
+
+.produk-view-box img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px; /* Enlarge the Netflix image */
+    margin-bottom: 15px; /* Add margin below the image */
+}
+
+.produk-view-box h2,
+.produk-view-box p {
+    text-align: left; /* Align text to the left */
+}
+
+.produk-view-box h2 {
+    margin-bottom: 10px; /* Add margin below the product name */
+}
+
+.produk-view-box p {
+    margin-bottom: 15px; /* Add margin below each paragraph */
+}
