@@ -69,5 +69,16 @@ details[open] div{
   padding: .5em 1em;
 }
 
+#paymentButton {
+    background-color: #007bff; /* Warna latar belakang */
+    color: #fff; /* Warna teks */
+    padding: 10px 20px; /* Padding tombol */
+    border: none; /* Menghapus border */
+    border-radius: 5px; /* Membuat sudut tombol menjadi melengkung */
+    cursor: pointer; /* Mengubah cursor menjadi tangan saat digulir */
+    transition: background-color 0.3s ease; /* Efek transisi saat hover */
+}
 
-Resources
+#paymentButton:hover {
+    background-color: #0056b3; /* Warna latar belakang saat hover */
+}
