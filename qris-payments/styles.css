@@ -7,6 +7,12 @@ main {
     margin-top: 50px;
 }
 
+#qrisImage {
+    max-width: 100%; /* Maksimum lebar gambar adalah lebar main */
+    display: block; /* Menghilangkan spasi di bawah gambar */
+    margin: 0 auto; /* Menempatkan gambar di tengah */
+}
+
 #loading {
     display: none;
     margin-top: 20px;
