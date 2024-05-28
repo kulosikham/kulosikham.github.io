@@ -12,25 +12,49 @@ header {
 }
 
 main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: 20px;
 }
 
 article {
-    margin-bottom: 40px;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
 }
 
-h1, h2 {
-    color: #333;
-}
-
-img {
+article img {
     max-width: 100%;
     height: auto;
+    border-radius: 5px;
+}
+
+article h2 {
+    margin-top: 10px;
+}
+
+article p {
+    margin-top: 10px;
+}
+
+article a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 footer {
     background-color: #333;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
