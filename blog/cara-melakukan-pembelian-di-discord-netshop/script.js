@@ -1,0 +1,16 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const steps = document.querySelectorAll(".step");
+    const nextButtons = document.querySelectorAll(".next-button");
+
+    let currentStep = 0;
+
+    nextButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            steps[currentStep].classList.add("hidden");
+            currentStep++;
+            if (currentStep < steps.length) {
+                steps[currentStep].classList.remove("hidden");
+            }
+        });
+    });
+});
