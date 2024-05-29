@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const steps = document.querySelectorAll(".step");
     const nextButtons = document.querySelectorAll(".next-button");
+    const endMessage = document.getElementById("end-message");
 
     let currentStep = 0;
 
@@ -10,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
             currentStep++;
             if (currentStep < steps.length) {
                 steps[currentStep].classList.remove("hidden");
+            } else {
+                endMessage.classList.remove("hidden");
             }
         });
     });
