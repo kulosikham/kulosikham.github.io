@@ -77,3 +77,13 @@ header h1 {
 .next-button:hover {
     background-color: #0056b3;
 }
+
+#end-message {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#end-message h2 {
+    color: #007BFF;
+    font-size: 2em;
+}
