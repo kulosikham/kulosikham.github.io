@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 endMessage.classList.remove("hidden");
             }
+
+            // Scroll ke atas halaman
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     });
 });
