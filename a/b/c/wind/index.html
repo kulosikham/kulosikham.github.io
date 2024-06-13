@@ -1,112 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Digital Store</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toko Online Digital</title>
+  <link href="css/tailwind.css" rel="stylesheet">
+  <script defer src="js/script.js"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100">
 
-    <!-- Navbar -->
-    <nav class="bg-teal-600 shadow-lg">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between">
-                <div class="flex space-x-7">
-                    <!-- Logo -->
-                    <div>
-                        <a href="#" class="flex items-center py-4 px-2 text-white">
-                            <span class="font-semibold text-lg">Digital Store</span>
-                        </a>
-                    </div>
-                    <!-- Primary Navbar items -->
-                    <div class="hidden md:flex items-center space-x-1">
-                        <a href="#" class="py-4 px-2 text-white border-b-4 border-teal-700 font-semibold">Home</a>
-                        <a href="#" class="py-4 px-2 text-gray-300 font-semibold hover:text-white transition duration-300">Products</a>
-                        <a href="#" class="py-4 px-2 text-gray-300 font-semibold hover:text-white transition duration-300">About</a>
-                        <a href="#" class="py-4 px-2 text-gray-300 font-semibold hover:text-white transition duration-300">Contact</a>
-                    </div>
-                </div>
-                <!-- Secondary Navbar items -->
-                <div class="hidden md:flex items-center space-x-3">
-                    <a href="" class="py-2 px-2 font-medium text-gray-300 rounded hover:bg-teal-700 hover:text-white transition duration-300">Log In</a>
-                    <a href="" class="py-2 px-2 font-medium text-white bg-teal-700 rounded hover:bg-teal-500 transition duration-300">Sign Up</a>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button class="outline-none mobile-menu-button">
-                        <svg class=" w-6 h-6 text-gray-300 hover:text-white " fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Mobile menu -->
-    <div class="hidden mobile-menu">
-        <ul class="">
-            <li class="active"><a href="index.html" class="block text-sm px-2 py-4 text-white bg-teal-700 font-semibold">Home</a></li>
-            <li><a href="#services" class="block text-sm px-2 py-4 hover:bg-teal-700 transition duration-300">Products</a></li>
-            <li><a href="#about" class="block text-sm px-2 py-4 hover:bg-teal-700 transition duration-300">About</a></li>
-            <li><a href="#contact" class="block text-sm px-2 py-4 hover:bg-teal-700 transition duration-300">Contact</a></li>
+  <!-- Header -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold text-gray-800">Toko Online</a>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a href="#" class="text-gray-800 hover:text-blue-500">Home</a></li>
+          <li><a href="#" class="text-gray-800 hover:text-blue-500">Produk</a></li>
+          <li><a href="#" class="text-gray-800 hover:text-blue-500">Tentang Kami</a></li>
+          <li><a href="#" class="text-gray-800 hover:text-blue-500">Kontak</a></li>
         </ul>
+      </nav>
+      <div>
+        <input type="text" placeholder="Cari produk..." class="border rounded p-2">
+        <button class="bg-blue-500 text-white p-2 rounded">Cari</button>
+      </div>
     </div>
+  </header>
 
-    <!-- Hero Section -->
-    <div class="bg-teal-500 py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl font-bold text-white">Welcome to Digital Store</h1>
-            <p class="mt-4 text-lg text-teal-100">Your one-stop shop for digital products</p>
-            <a href="#" class="mt-8 inline-block bg-teal-700 text-white py-2 px-4 rounded hover:bg-teal-600">Shop Now</a>
+  <!-- Banner -->
+  <section class="bg-blue-500 text-white text-center py-20">
+    <h1 class="text-4xl font-bold">Selamat Datang di Toko Online Digital</h1>
+    <p class="mt-4">Temukan produk digital terbaik di sini</p>
+    <button class="mt-8 bg-white text-blue-500 font-bold py-2 px-4 rounded">Belanja Sekarang</button>
+  </section>
+
+  <!-- Daftar Produk -->
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">Produk Kami</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-4 rounded shadow">
+        <img src="https://via.placeholder.com/150" alt="Produk 1" class="w-full h-48 object-cover rounded">
+        <h3 class="text-xl font-bold mt-4">Produk 1</h3>
+        <p class="mt-2 text-gray-600">Deskripsi singkat produk 1.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <span class="text-gray-800 font-bold">Rp 100.000</span>
+          <button class="bg-blue-500 text-white p-2 rounded">Beli</button>
         </div>
+      </div>
+      <div class="bg-white p-4 rounded shadow">
+        <img src="https://via.placeholder.com/150" alt="Produk 2" class="w-full h-48 object-cover rounded">
+        <h3 class="text-xl font-bold mt-4">Produk 2</h3>
+        <p class="mt-2 text-gray-600">Deskripsi singkat produk 2.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <span class="text-gray-800 font-bold">Rp 200.000</span>
+          <button class="bg-blue-500 text-white p-2 rounded">Beli</button>
+        </div>
+      </div>
+      <div class="bg-white p-4 rounded shadow">
+        <img src="https://via.placeholder.com/150" alt="Produk 3" class="w-full h-48 object-cover rounded">
+        <h3 class="text-xl font-bold mt-4">Produk 3</h3>
+        <p class="mt-2 text-gray-600">Deskripsi singkat produk 3.</p>
+        <div class="mt-4 flex justify-between items-center">
+          <span class="text-gray-800 font-bold">Rp 300.000</span>
+          <button class="bg-blue-500 text-white p-2 rounded">Beli</button>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- Products Section -->
-    <div class="py-12 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-teal-900">Featured Products</h2>
-            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://via.placeholder.com/150" alt="product">
-                    <h3 class="tracking-widest text-teal-600 text-xs font-medium title-font">CATEGORY</h3>
-                    <h2 class="text-lg text-teal-900 font-medium title-font mb-4">Product One</h2>
-                    <p class="leading-relaxed text-base text-gray-600">This is a short description of the product.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://via.placeholder.com/150" alt="product">
-                    <h3 class="tracking-widest text-teal-600 text-xs font-medium title-font">CATEGORY</h3>
-                    <h2 class="text-lg text-teal-900 font-medium title-font mb-4">Product Two</h2>
-                    <p class="leading-relaxed text-base text-gray-600">This is a short description of the product.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg">
-                    <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://via.placeholder.com/150" alt="product">
-                    <h3 class="tracking-widest text-teal-600 text-xs font-medium title-font">CATEGORY</h3>
-                    <h2 class="text-lg text-teal-900 font-medium title-font mb-4">Product Three</h2>
-                    <p class="leading-relaxed text-base text-gray-600">This is a short description of the product.</p>
-                </div>
-            </div>
-        </div>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2024 Toko Online Digital. All Rights Reserved.</p>
+      <ul class="flex justify-center space-x-4 mt-4">
+        <li><a href="#" class="hover:text-blue-400">Facebook</a></li>
+        <li><a href="#" class="hover:text-blue-400">Twitter</a></li>
+        <li><a href="#" class="hover:text-blue-400">Instagram</a></li>
+      </ul>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-teal-600">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-gray-300">© 2024 Digital Store. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Toggle mobile menu
-        const btn = document.querySelector("button.mobile-menu-button");
-        const menu = document.querySelector(".mobile-menu");
-
-        btn.addEventListener("click", () => {
-            menu.classList.toggle("hidden");
-        });
-    </script>
+  </footer>
 
 </body>
 </html>
