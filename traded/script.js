@@ -1,24 +1,10 @@
-document.getElementById('generateButton').addEventListener('click', generateSimulation);
-
-function generateSimulation() {
-    // Generate random buy and sell prices
-    let buyPrice = (Math.random() * (100 - 50) + 50).toFixed(2); // Random price between 50 and 100
-    let sellPrice = (Math.random() * (150 - 100) + 100).toFixed(2); // Random price between 100 and 150
-
-    // Calculate profit
-    let profit = (sellPrice - buyPrice).toFixed(2);
-
-    // Calculate percentage for the progress bar
-    let total = parseFloat(buyPrice) + parseFloat(sellPrice);
-    let buyPercentage = (parseFloat(buyPrice) / total) * 100;
-    let sellPercentage = (parseFloat(sellPrice) / total) * 100;
-
-    // Display the results
-    document.getElementById('buyPrice').textContent = buyPrice;
-    document.getElementById('sellPrice').textContent = sellPrice;
-    document.getElementById('profit').textContent = profit;
-
-    // Update progress bar
-    document.getElementById('buyBar').style.width = buyPercentage + '%';
-    document.getElementById('sellBar').style.width = sellPercentage + '%';
+function downloadTxt() {
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+    const blob = new Blob([content], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = title ? `${title}.txt` : 'untitled.txt';
+    link.click();
+    URL.revokeObjectURL(link.href);
 }
