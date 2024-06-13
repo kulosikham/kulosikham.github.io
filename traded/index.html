@@ -3,38 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulator Prediksi Harga Pasar</title>
+    <title>Simulasi Trading</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Simulator Prediksi Harga Pasar</h1>
-        <form id="predictForm">
-            <label for="commodity">Komoditas:</label>
-            <input type="text" id="commodity" name="commodity" required>
-            
-            <label for="initialPrice">Harga Awal:</label>
-            <input type="number" id="initialPrice" name="initialPrice" required>
-            
-            <label for="days">Jumlah Hari:</label>
-            <input type="number" id="days" name="days" required>
-            
-            <button type="submit">Prediksi</button>
-        </form>
-        
-        <div id="result" class="hidden">
-            <h2>Hasil Prediksi</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Hari</th>
-                        <th>Harga</th>
-                    </tr>
-                </thead>
-                <tbody id="resultTableBody">
-                    <!-- Hasil prediksi akan ditampilkan di sini -->
-                </tbody>
-            </table>
+        <h1>Simulasi Trading</h1>
+        <button id="generateButton">Generate</button>
+        <div id="simulationResult">
+            <p>Harga Beli: <span id="buyPrice"></span></p>
+            <p>Harga Jual: <span id="sellPrice"></span></p>
+            <p>Keuntungan: <span id="profit"></span></p>
+            <div class="progress-bar">
+                <div id="buyBar" class="bar green"></div>
+                <div id="sellBar" class="bar red"></div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
