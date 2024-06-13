@@ -1,34 +1,24 @@
-document.getElementById('predictForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+document.getElementById('generateButton').addEventListener('click', generateSimulation);
 
-    const commodity = document.getElementById('commodity').value;
-    const initialPrice = parseFloat(document.getElementById('initialPrice').value);
-    const days = parseInt(document.getElementById('days').value);
-    const resultDiv = document.getElementById('result');
-    const resultTableBody = document.getElementById('resultTableBody');
+function generateSimulation() {
+    // Generate random buy and sell prices
+    let buyPrice = (Math.random() * (100 - 50) + 50).toFixed(2); // Random price between 50 and 100
+    let sellPrice = (Math.random() * (150 - 100) + 100).toFixed(2); // Random price between 100 and 150
 
-    // Reset result table
-    resultTableBody.innerHTML = '';
+    // Calculate profit
+    let profit = (sellPrice - buyPrice).toFixed(2);
 
-    let currentPrice = initialPrice;
+    // Calculate percentage for the progress bar
+    let total = parseFloat(buyPrice) + parseFloat(sellPrice);
+    let buyPercentage = (parseFloat(buyPrice) / total) * 100;
+    let sellPercentage = (parseFloat(sellPrice) / total) * 100;
 
-    for (let day = 1; day <= days; day++) {
-        // Simulate price change (here we use a random fluctuation for demonstration)
-        const priceChange = (Math.random() - 0.5) * 10; // Random change between -5 and +5
-        currentPrice += priceChange;
-        currentPrice = Math.max(currentPrice, 0); // Price cannot be negative
+    // Display the results
+    document.getElementById('buyPrice').textContent = buyPrice;
+    document.getElementById('sellPrice').textContent = sellPrice;
+    document.getElementById('profit').textContent = profit;
 
-        const row = document.createElement('tr');
-        const dayCell = document.createElement('td');
-        const priceCell = document.createElement('td');
-
-        dayCell.textContent = day;
-        priceCell.textContent = currentPrice.toFixed(2);
-
-        row.appendChild(dayCell);
-        row.appendChild(priceCell);
-        resultTableBody.appendChild(row);
-    }
-
-    resultDiv.classList.remove('hidden');
-});
+    // Update progress bar
+    document.getElementById('buyBar').style.width = buyPercentage + '%';
+    document.getElementById('sellBar').style.width = sellPercentage + '%';
+}
