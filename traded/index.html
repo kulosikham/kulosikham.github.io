@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi Trading</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>TXT Maker</title>
+    <link href="styles.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h1>Simulasi Trading</h1>
-        <button id="generateButton">Generate</button>
-        <div id="simulationResult">
-            <p>Harga Beli: <span id="buyPrice"></span></p>
-            <p>Harga Jual: <span id="sellPrice"></span></p>
-            <p>Keuntungan: <span id="profit"></span></p>
-            <div class="progress-bar">
-                <div id="buyBar" class="bar green"></div>
-                <div id="sellBar" class="bar red"></div>
-            </div>
-        </div>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+    <h1 class="text-2xl font-bold mb-4">TXT Maker</h1>
+    <div class="mb-4">
+        <label for="title" class="block text-sm font-medium text-gray-700">Judul</label>
+        <input type="text" id="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
     </div>
-    <script src="script.js"></script>
+    <div class="mb-4">
+        <label for="content" class="block text-sm font-medium text-gray-700">Text</label>
+        <textarea id="content" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+    </div>
+    <div class="flex justify-end">
+        <button onclick="downloadTxt()" class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none">Download TXT</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
