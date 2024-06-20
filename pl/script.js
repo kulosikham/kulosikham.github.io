@@ -1,6 +1,8 @@
 document.getElementById('menu-button').addEventListener('click', function() {
+    const menuButton = document.getElementById('menu-button');
     const menu = document.getElementById('menu');
-    menu.classList.toggle('hidden');
+    menuButton.classList.toggle('active');
+    menu.classList.toggle('active');
 });
 
 document.getElementById('contact-form').addEventListener('submit', function(event) {
