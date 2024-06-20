@@ -1,3 +1,8 @@
+document.getElementById('menu-button').addEventListener('click', function() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('hidden');
+});
+
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault();
     const name = document.getElementById('name').value;
