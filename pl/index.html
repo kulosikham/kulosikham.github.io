@@ -5,13 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecraft Plugin Developer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Language Switcher -->
+    <div class="fixed top-4 right-4">
+        <button id="lang-en" class="bg-blue-500 text-white p-2 rounded-md mr-2">English</button>
+        <button id="lang-id" class="bg-green-500 text-white p-2 rounded-md">Indonesia</button>
+    </div>
 
     <!-- Header -->
     <header class="bg-gray-900 text-white p-4">
         <div class="container mx-auto">
-            <h1 class="text-3xl font-bold">Minecraft Plugin Developer</h1>
+            <h1 class="text-3xl font-bold" data-en="Minecraft Plugin Developer" data-id="Pengembang Plugin Minecraft">Minecraft Plugin Developer</h1>
         </div>
     </header>
 
@@ -19,22 +26,20 @@
     <main class="container mx-auto mt-10">
         <!-- About Section -->
         <section class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-bold mb-4">About Me</h2>
-            <p>
-                Hello! I am a Minecraft plugin developer with a passion for creating unique and engaging plugins. 
-                I have been developing plugins for several years and enjoy pushing the boundaries of what is possible 
-                in the game. Explore my work and get in touch if you have any custom plugin requests or ideas!
+            <h2 class="text-2xl font-bold mb-4" data-en="About Me" data-id="Tentang Saya">About Me</h2>
+            <p data-en="Hello! I am a Minecraft plugin developer with a passion for creating unique and engaging plugins. I have been developing plugins for several years and enjoy pushing the boundaries of what is possible in the game. Explore my work and get in touch if you have any custom plugin requests or ideas!" data-id="Halo! Saya adalah pengembang plugin Minecraft dengan hasrat untuk menciptakan plugin yang unik dan menarik. Saya telah mengembangkan plugin selama beberapa tahun dan menikmati mendorong batasan dari apa yang mungkin dalam permainan. Jelajahi karya saya dan hubungi saya jika Anda memiliki permintaan atau ide plugin khusus!">
+                Hello! I am a Minecraft plugin developer with a passion for creating unique and engaging plugins. I have been developing plugins for several years and enjoy pushing the boundaries of what is possible in the game. Explore my work and get in touch if you have any custom plugin requests or ideas!
             </p>
         </section>
 
         <!-- Projects Section -->
         <section class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h2 class="text-2xl font-bold mb-4">Projects</h2>
+            <h2 class="text-2xl font-bold mb-4" data-en="Projects" data-id="Proyek">Projects</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Example Project -->
                 <div class="bg-gray-200 p-4 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2">Project Title</h3>
-                    <p>A brief description of the project.</p>
+                    <h3 class="text-xl font-bold mb-2" data-en="Project Title" data-id="Judul Proyek">Project Title</h3>
+                    <p data-en="A brief description of the project." data-id="Deskripsi singkat tentang proyek ini.">A brief description of the project.</p>
                 </div>
                 <!-- Add more projects here -->
             </div>
@@ -42,21 +47,21 @@
 
         <!-- Contact Section -->
         <section class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
+            <h2 class="text-2xl font-bold mb-4" data-en="Contact Me" data-id="Hubungi Saya">Contact Me</h2>
             <form id="contact-form">
                 <div class="mb-4">
-                    <label for="name" class="block text-gray-700">Name</label>
+                    <label for="name" class="block text-gray-700" data-en="Name" data-id="Nama">Name</label>
                     <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-md">
                 </div>
                 <div class="mb-4">
-                    <label for="email" class="block text-gray-700">Email</label>
+                    <label for="email" class="block text-gray-700" data-en="Email" data-id="Surel">Email</label>
                     <input type="email" id="email" class="w-full p-2 border border-gray-300 rounded-md">
                 </div>
                 <div class="mb-4">
-                    <label for="message" class="block text-gray-700">Message</label>
+                    <label for="message" class="block text-gray-700" data-en="Message" data-id="Pesan">Message</label>
                     <textarea id="message" class="w-full p-2 border border-gray-300 rounded-md"></textarea>
                 </div>
-                <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Send</button>
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded-md" data-en="Send" data-id="Kirim">Send</button>
             </form>
         </section>
     </main>
@@ -64,7 +69,7 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white p-4 mt-6">
         <div class="container mx-auto text-center">
-            &copy; 2024 Minecraft Plugin Developer. All rights reserved.
+            &copy; 2024 <span data-en="Minecraft Plugin Developer" data-id="Pengembang Plugin Minecraft">Minecraft Plugin Developer</span>. All rights reserved.
         </div>
     </footer>
 
