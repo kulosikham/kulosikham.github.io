@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Angka</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-10 rounded shadow-lg text-center">
+        <h1 class="text-2xl font-bold mb-4">Game Tebak Angka</h1>
+        <p class="mb-4">Tebak angka antara 1 dan 10:</p>
+        <input type="number" id="guessInput" class="border p-2 rounded w-full mb-4" min="1" max="10">
+        <button onclick="checkGuess()" class="bg-blue-500 text-white px-4 py-2 rounded">Tebak</button>
+        <p id="message" class="mt-4"></p>
+    </div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 10) + 1;
+
+        function checkGuess() {
+            const guess = document.getElementById('guessInput').value;
+            const message = document.getElementById('message');
+
+            if (guess == randomNumber) {
+                message.innerHTML = `<span class="text-green-500">Selamat! Tebakan kamu benar.</span>`;
+            } else {
+                message.innerHTML = `<span class="text-red-500">Salah! Coba lagi.</span>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
