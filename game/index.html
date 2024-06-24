@@ -38,7 +38,7 @@
   </style>
 </head>
 <body class="bg-gradient-to-r from-green-400 to-blue-500 flex flex-col items-center justify-center min-h-screen p-4">
-  <h1 class="text-4xl font-bold text-white mb-6">Whack-a-Mole</h1>
+  <h1 id="gameTitle" class="text-4xl font-bold text-white mb-6 cursor-pointer">Whack-a-Mole</h1>
   <div class="game-grid">
     <div class="hole" id="hole1"><div class="mole"></div></div>
     <div class="hole" id="hole2"><div class="mole"></div></div>
@@ -56,7 +56,7 @@
   </div>
   <div class="flex mt-4 space-x-4">
     <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700">Mulai Permainan</button>
-    <button id="stopBtn" class="bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700">Berhenti</button>
+    <button id="stopBtn" class="bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700" style="display: none;">Berhenti</button>
   </div>
   <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
   <div class="mt-8 w-full max-w-lg bg-white p-4 rounded-lg shadow-md">
@@ -80,6 +80,7 @@
     const stopBtn = document.getElementById('stopBtn');
     const hitSound = document.getElementById('hitSound');
     const scoreboard = document.getElementById('scoreboard');
+    const gameTitle = document.getElementById('gameTitle');
 
     function randomHole(holes) {
       const index = Math.floor(Math.random() * holes.length);
@@ -102,15 +103,15 @@
       level = 1;
       scoreDisplay.textContent = score;
       levelDisplay.textContent = level;
-      startBtn.disabled = true;
-      stopBtn.disabled = false;
+      startBtn.style.display = 'none';
+      stopBtn.style.display = 'inline-block';
       gameStartTime = new Date();
       showMole();
     }
 
     function stopGame() {
-      startBtn.disabled = false;
-      stopBtn.disabled = true;
+      startBtn.style.display = 'inline-block';
+      stopBtn.style.display = 'none';
       clearTimeout(moleTimerId);
       gameEndTime = new Date();
       updateCountryScore();
@@ -149,7 +150,7 @@
           event.target.classList.remove('show');
           hitSound.play();
           if (score % 75 === 0) {
-            level += 0.25;
+            level += 0.65;
             levelDisplay.textContent = Math.floor(level);
           }
         }
@@ -158,6 +159,12 @@
 
     startBtn.addEventListener('click', startGame);
     stopBtn.addEventListener('click', stopGame);
+
+    gameTitle.addEventListener('click', () => {
+      window.open('', '', 'width=300,height=200').document.write(
+        `<h1>Whack-a-Mole</h1><p>Game ini bertujuan untuk mendapatkan skor setinggi mungkin dengan memukul mole yang muncul di lubang. Setiap level akan meningkatkan kecepatan kemunculan mole.</p>`
+      );
+    });
 
     // Render initial scoreboard
     renderScoreboard();
