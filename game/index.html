@@ -49,28 +49,28 @@
     <div class="hole" id="hole9"><div class="mole"></div></div>
   </div>
   <p class="text-xl">Skor: <span id="score">0</span></p>
-  <p class="text-xl">Waktu: <span id="time">30</span> detik</p>
-  <p class="text-xl">Rekor Skor Tertinggi: <span id="highScore">0</span></p>
+  <p class="text-xl">Level: <span id="level">1</span></p>
+  <p class="text-xl">Total Skor Negara: <span id="countryScore">0</span></p>
   <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700">Mulai Permainan</button>
+  <button id="stopBtn" class="bg-red-500 text-white py-2 px-4 rounded mt-4 hover:bg-red-700">Berhenti</button>
 
   <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
 
   <script>
     let score = 0;
-    let timeLeft = 30;
-    let timerId;
-    let moleTimerId;
     let level = 1;
-    let highScore = localStorage.getItem('highScore') || 0;
+    let countryScore = localStorage.getItem('countryScore') || 0;
+    let moleTimerId;
 
     const holes = document.querySelectorAll('.hole');
     const scoreDisplay = document.getElementById('score');
-    const timeDisplay = document.getElementById('time');
-    const highScoreDisplay = document.getElementById('highScore');
+    const levelDisplay = document.getElementById('level');
+    const countryScoreDisplay = document.getElementById('countryScore');
     const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
     const hitSound = document.getElementById('hitSound');
 
-    highScoreDisplay.textContent = highScore;
+    countryScoreDisplay.textContent = countryScore;
 
     function randomHole(holes) {
       const index = Math.floor(Math.random() * holes.length);
@@ -84,38 +84,32 @@
 
       setTimeout(() => {
         mole.classList.remove('show');
-        if (timeLeft > 0) showMole();
+        if (startBtn.disabled) showMole();
       }, 800 / level);
     }
 
     function startGame() {
       score = 0;
-      timeLeft = 30;
       level = 1;
       scoreDisplay.textContent = score;
-      timeDisplay.textContent = timeLeft;
+      levelDisplay.textContent = level;
       startBtn.disabled = true;
+      stopBtn.disabled = false;
       showMole();
-      timerId = setInterval(countDown, 1000);
-      moleTimerId = setInterval(() => {
-        level++;
-      }, 10000); // Increase level every 10 seconds
     }
 
-    function countDown() {
-      timeLeft--;
-      timeDisplay.textContent = timeLeft;
-      if (timeLeft <= 0) {
-        clearInterval(timerId);
-        clearInterval(moleTimerId);
-        alert('Waktu habis! Skor Anda: ' + score);
-        startBtn.disabled = false;
-        if (score > highScore) {
-          highScore = score;
-          localStorage.setItem('highScore', highScore);
-          highScoreDisplay.textContent = highScore;
-        }
-      }
+    function stopGame() {
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+      clearTimeout(moleTimerId);
+      updateCountryScore();
+      alert('Permainan berakhir! Skor Anda: ' + score);
+    }
+
+    function updateCountryScore() {
+      countryScore = parseInt(countryScore) + score;
+      localStorage.setItem('countryScore', countryScore);
+      countryScoreDisplay.textContent = countryScore;
     }
 
     holes.forEach(hole => {
@@ -125,11 +119,16 @@
           scoreDisplay.textContent = score;
           event.target.classList.remove('show');
           hitSound.play();
+          if (score % 75 === 0) {
+            level += 0.65;
+            levelDisplay.textContent = Math.floor(level);
+          }
         }
       });
     });
 
     startBtn.addEventListener('click', startGame);
+    stopBtn.addEventListener('click', stopGame);
   </script>
 </body>
 </html>
