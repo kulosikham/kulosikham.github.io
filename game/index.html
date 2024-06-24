@@ -58,10 +58,6 @@
     <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700">Mulai Permainan</button>
     <button id="stopBtn" class="bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700">Berhenti</button>
   </div>
-  <div class="mt-4">
-    <label for="countryInput" class="text-white text-xl">Nama Negara:</label>
-    <input id="countryInput" type="text" class="ml-2 p-2 rounded-md" placeholder="Masukkan nama negara">
-  </div>
   <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
   <div class="mt-8 w-full max-w-lg bg-white p-4 rounded-lg shadow-md">
     <h2 class="text-2xl font-bold mb-4 text-center">Scoreboard Global</h2>
@@ -71,9 +67,11 @@
   <script>
     let score = 0;
     let level = 1;
-    let country = 'Indonesia'; // Default country, can be changed by user input
+    let country = 'Indonesia'; // Default country
     let countryScores = JSON.parse(localStorage.getItem('countryScores')) || {};
     let moleTimerId;
+    let gameStartTime;
+    let gameEndTime;
 
     const holes = document.querySelectorAll('.hole');
     const scoreDisplay = document.getElementById('score');
@@ -82,7 +80,6 @@
     const stopBtn = document.getElementById('stopBtn');
     const hitSound = document.getElementById('hitSound');
     const scoreboard = document.getElementById('scoreboard');
-    const countryInput = document.getElementById('countryInput');
 
     function randomHole(holes) {
       const index = Math.floor(Math.random() * holes.length);
@@ -107,6 +104,7 @@
       levelDisplay.textContent = level;
       startBtn.disabled = true;
       stopBtn.disabled = false;
+      gameStartTime = new Date();
       showMole();
     }
 
@@ -114,16 +112,19 @@
       startBtn.disabled = false;
       stopBtn.disabled = true;
       clearTimeout(moleTimerId);
+      gameEndTime = new Date();
       updateCountryScore();
-      alert('Permainan berakhir! Skor Anda: ' + score);
+      const duration = gameEndTime - gameStartTime;
+      const durationDate = new Date(duration);
+      alert(
+        `Permainan berakhir!\n` +
+        `Skor Anda: ${score}\n` +
+        `Level: ${Math.floor(level)}\n` +
+        `Durasi Permainan: ${durationDate.getUTCHours()} jam, ${durationDate.getUTCMinutes()} menit, ${durationDate.getUTCSeconds()} detik, ${durationDate.getUTCMilliseconds()} milidetik`
+      );
     }
 
     function updateCountryScore() {
-      country = countryInput.value.trim() || 'Indonesia';
-      if (!country) {
-        alert('Nama negara tidak boleh kosong.');
-        return;
-      }
       countryScores[country] = (countryScores[country] || 0) + score;
       localStorage.setItem('countryScores', JSON.stringify(countryScores));
       renderScoreboard();
@@ -148,7 +149,7 @@
           event.target.classList.remove('show');
           hitSound.play();
           if (score % 75 === 0) {
-            level += 0.65;
+            level += 0.25;
             levelDisplay.textContent = Math.floor(level);
           }
         }
