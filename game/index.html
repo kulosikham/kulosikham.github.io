@@ -25,53 +25,33 @@
     .mole {
       width: 80px;
       height: 80px;
-      background-color: #d97706; /* Amber-700 */
       border-radius: 50%;
       position: absolute;
       top: 110px;
       left: 10px;
       transition: top 0.3s ease;
+      display: none; /* Initially hide mole */
+    }
+    .mole img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .mole.show {
       top: 10px;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 50;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 8px;
-      text-align: center;
+      display: block; /* Show mole when 'show' class is added */
     }
   </style>
 </head>
 <body class="bg-gradient-to-r from-green-400 to-blue-500 flex flex-col items-center justify-center min-h-screen p-4">
   <h1 id="gameTitle" class="text-4xl font-bold text-white mb-6 cursor-pointer">Whack-a-Mole</h1>
   <div class="game-grid">
-    <div class="hole" id="hole1"><div class="mole"></div></div>
-    <div class="hole" id="hole2"><div class="mole"></div></div>
-    <div class="hole" id="hole3"><div class="mole"></div></div>
-    <div class="hole" id="hole4"><div class="mole"></div></div>
-    <div class="hole" id="hole5"><div class="mole"></div></div>
-    <div class="hole" id="hole6"><div class="mole"></div></div>
-    <div class="hole" id="hole7"><div class="mole"></div></div>
-    <div class="hole" id="hole8"><div class="mole"></div></div>
-    <div class="hole" id="hole9"><div class="mole"></div></div>
+    <div class="hole" id="hole1"><div class="mole"><img src="path/to/image1.jpg" alt="Mole 1"></div></div>
+    <div class="hole" id="hole2"><div class="mole"><img src="path/to/image2.jpg" alt="Mole 2"></div></div>
+    <div class="hole" id="hole3"><div class="mole"><img src="path/to/image3.jpg" alt="Mole 3"></div></div>
+    <div class="hole" id="hole4"><div class="mole"><img src="path/to/image4.jpg" alt="Mole 4"></div></div>
+    <div class="hole" id="hole5"><div class="mole"><img src="path/to/image5.jpg" alt="Mole 5"></div></div>
+    <!-- Add more holes as needed -->
   </div>
   <div class="bg-white p-4 rounded-lg shadow-md mt-4">
     <p class="text-xl font-semibold">Skor: <span id="score">0</span></p>
@@ -94,7 +74,6 @@
       <span id="closeModal" class="float-right cursor-pointer text-gray-600">&times;</span>
       <h2 class="text-2xl font-bold mb-4">Tentang Whack-a-Mole</h2>
       <p>Game ini bertujuan untuk mendapatkan skor setinggi mungkin dengan memukul mole yang muncul di lubang. Setiap level akan meningkatkan kecepatan kemunculan mole.</p>
-      <p>Kami merekomendasikan anda untuk bermain game ini menggunakan smartphone anda.</p>
     </div>
   </div>
 
@@ -186,7 +165,7 @@
           event.target.classList.remove('show');
           hitSound.play();
           if (score % 75 === 0) {
-            level += 0.20;
+            level += 0.65;
             levelDisplay.textContent = Math.floor(level);
           }
         }
@@ -197,7 +176,7 @@
     stopBtn.addEventListener('click', stopGame);
 
     gameTitle.addEventListener('click', () => {
-      infoModal.style.display = 'flex';
+      infoModal.style.display = 'block';
     });
 
     closeModal.addEventListener('click', () => {
