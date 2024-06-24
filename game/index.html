@@ -18,6 +18,7 @@
       height: 100px;
       background-color: #ccc;
       position: relative;
+      overflow: hidden;
     }
     .mole {
       width: 80px;
@@ -25,13 +26,16 @@
       background-color: brown;
       border-radius: 50%;
       position: absolute;
-      top: 10px;
+      top: 110px;
       left: 10px;
-      display: none;
+      transition: top 0.3s ease;
+    }
+    .mole.show {
+      top: 10px;
     }
   </style>
 </head>
-<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+<body class="bg-green-200 flex flex-col items-center justify-center min-h-screen">
   <h1 class="text-3xl font-bold mb-6">Whack-a-Mole</h1>
   <div class="game-grid">
     <div class="hole" id="hole1"><div class="mole"></div></div>
@@ -46,6 +50,7 @@
   </div>
   <p class="text-xl">Skor: <span id="score">0</span></p>
   <p class="text-xl">Waktu: <span id="time">30</span> detik</p>
+  <p class="text-xl">Rekor Skor Tertinggi: <span id="highScore">0</span></p>
   <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700">Mulai Permainan</button>
 
   <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
@@ -54,11 +59,18 @@
     let score = 0;
     let timeLeft = 30;
     let timerId;
+    let moleTimerId;
+    let level = 1;
+    let highScore = localStorage.getItem('highScore') || 0;
+
     const holes = document.querySelectorAll('.hole');
     const scoreDisplay = document.getElementById('score');
     const timeDisplay = document.getElementById('time');
+    const highScoreDisplay = document.getElementById('highScore');
     const startBtn = document.getElementById('startBtn');
     const hitSound = document.getElementById('hitSound');
+
+    highScoreDisplay.textContent = highScore;
 
     function randomHole(holes) {
       const index = Math.floor(Math.random() * holes.length);
@@ -68,22 +80,26 @@
     function showMole() {
       const hole = randomHole(holes);
       const mole = hole.querySelector('.mole');
-      mole.style.display = 'block';
+      mole.classList.add('show');
 
       setTimeout(() => {
-        mole.style.display = 'none';
+        mole.classList.remove('show');
         if (timeLeft > 0) showMole();
-      }, 800);
+      }, 800 / level);
     }
 
     function startGame() {
       score = 0;
       timeLeft = 30;
+      level = 1;
       scoreDisplay.textContent = score;
       timeDisplay.textContent = timeLeft;
       startBtn.disabled = true;
       showMole();
       timerId = setInterval(countDown, 1000);
+      moleTimerId = setInterval(() => {
+        level++;
+      }, 10000); // Increase level every 10 seconds
     }
 
     function countDown() {
@@ -91,8 +107,14 @@
       timeDisplay.textContent = timeLeft;
       if (timeLeft <= 0) {
         clearInterval(timerId);
+        clearInterval(moleTimerId);
         alert('Waktu habis! Skor Anda: ' + score);
         startBtn.disabled = false;
+        if (score > highScore) {
+          highScore = score;
+          localStorage.setItem('highScore', highScore);
+          highScoreDisplay.textContent = highScore;
+        }
       }
     }
 
@@ -101,7 +123,7 @@
         if (event.target.classList.contains('mole')) {
           score++;
           scoreDisplay.textContent = score;
-          event.target.style.display = 'none';
+          event.target.classList.remove('show');
           hitSound.play();
         }
       });
