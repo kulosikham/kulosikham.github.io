@@ -45,11 +45,20 @@
     <div class="hole" id="hole9"><div class="mole"></div></div>
   </div>
   <p class="text-xl">Skor: <span id="score">0</span></p>
+  <p class="text-xl">Waktu: <span id="time">30</span> detik</p>
+  <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700">Mulai Permainan</button>
+
+  <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
 
   <script>
     let score = 0;
+    let timeLeft = 30;
+    let timerId;
     const holes = document.querySelectorAll('.hole');
     const scoreDisplay = document.getElementById('score');
+    const timeDisplay = document.getElementById('time');
+    const startBtn = document.getElementById('startBtn');
+    const hitSound = document.getElementById('hitSound');
 
     function randomHole(holes) {
       const index = Math.floor(Math.random() * holes.length);
@@ -60,11 +69,31 @@
       const hole = randomHole(holes);
       const mole = hole.querySelector('.mole');
       mole.style.display = 'block';
-      
+
       setTimeout(() => {
         mole.style.display = 'none';
-        showMole();
+        if (timeLeft > 0) showMole();
       }, 800);
+    }
+
+    function startGame() {
+      score = 0;
+      timeLeft = 30;
+      scoreDisplay.textContent = score;
+      timeDisplay.textContent = timeLeft;
+      startBtn.disabled = true;
+      showMole();
+      timerId = setInterval(countDown, 1000);
+    }
+
+    function countDown() {
+      timeLeft--;
+      timeDisplay.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(timerId);
+        alert('Waktu habis! Skor Anda: ' + score);
+        startBtn.disabled = false;
+      }
     }
 
     holes.forEach(hole => {
@@ -73,11 +102,12 @@
           score++;
           scoreDisplay.textContent = score;
           event.target.style.display = 'none';
+          hitSound.play();
         }
       });
     });
 
-    showMole();
+    startBtn.addEventListener('click', startGame);
   </script>
 </body>
 </html>
