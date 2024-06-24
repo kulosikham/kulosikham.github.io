@@ -37,7 +37,7 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-r from-green-400 to-blue-500 flex flex-col items-center justify-center min-h-screen">
+<body class="bg-gradient-to-r from-green-400 to-blue-500 flex flex-col items-center justify-center min-h-screen p-4">
   <h1 class="text-4xl font-bold text-white mb-6">Whack-a-Mole</h1>
   <div class="game-grid">
     <div class="hole" id="hole1"><div class="mole"></div></div>
@@ -58,19 +58,20 @@
     <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700">Mulai Permainan</button>
     <button id="stopBtn" class="bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700">Berhenti</button>
   </div>
-
+  <div class="mt-4">
+    <label for="countryInput" class="text-white text-xl">Nama Negara:</label>
+    <input id="countryInput" type="text" class="ml-2 p-2 rounded-md" placeholder="Masukkan nama negara">
+  </div>
   <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
-
   <div class="mt-8 w-full max-w-lg bg-white p-4 rounded-lg shadow-md">
     <h2 class="text-2xl font-bold mb-4 text-center">Scoreboard Global</h2>
     <ul id="scoreboard" class="list-decimal list-inside space-y-2">
     </ul>
   </div>
-
   <script>
     let score = 0;
     let level = 1;
-    let country = 'Indonesia'; // Ganti dengan nama negara sesuai
+    let country = 'Indonesia'; // Default country, can be changed by user input
     let countryScores = JSON.parse(localStorage.getItem('countryScores')) || {};
     let moleTimerId;
 
@@ -81,6 +82,7 @@
     const stopBtn = document.getElementById('stopBtn');
     const hitSound = document.getElementById('hitSound');
     const scoreboard = document.getElementById('scoreboard');
+    const countryInput = document.getElementById('countryInput');
 
     function randomHole(holes) {
       const index = Math.floor(Math.random() * holes.length);
@@ -117,6 +119,11 @@
     }
 
     function updateCountryScore() {
+      country = countryInput.value.trim() || 'Indonesia';
+      if (!country) {
+        alert('Nama negara tidak boleh kosong.');
+        return;
+      }
       countryScores[country] = (countryScores[country] || 0) + score;
       localStorage.setItem('countryScores', JSON.stringify(countryScores));
       renderScoreboard();
