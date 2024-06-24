@@ -35,28 +35,8 @@
     .mole.show {
       top: 10px;
     }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 50;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 8px;
-      text-align: center;
+    .mole.special {
+      background-color: #8b5cf6; /* Purple-700 */
     }
   </style>
 </head>
@@ -94,7 +74,6 @@
       <span id="closeModal" class="float-right cursor-pointer text-gray-600">&times;</span>
       <h2 class="text-2xl font-bold mb-4">Tentang Whack-a-Mole</h2>
       <p>Game ini bertujuan untuk mendapatkan skor setinggi mungkin dengan memukul mole yang muncul di lubang. Setiap level akan meningkatkan kecepatan kemunculan mole.</p>
-      <p>Kami merekomendasikan anda untuk bermain game ini menggunakan smartphone anda.</p>
     </div>
   </div>
 
@@ -128,8 +107,15 @@
       const mole = hole.querySelector('.mole');
       mole.classList.add('show');
 
+      // Determine if special mole should appear
+      const specialChance = Math.random();
+      if (specialChance <= 0.008 && score > 30) {
+        mole.classList.add('special');
+      }
+
       setTimeout(() => {
         mole.classList.remove('show');
+        mole.classList.remove('special');
         if (startBtn.style.display === 'none') showMole();
       }, 800 / level);
     }
@@ -181,12 +167,22 @@
     holes.forEach(hole => {
       hole.addEventListener('click', (event) => {
         if (event.target.classList.contains('mole')) {
-          score++;
-          scoreDisplay.textContent = score;
+          if (event.target.classList.contains('special')) {
+            // Handle special mole click
+            const bonusScore = Math.floor(Math.random() * 21) + 30; // Random score between 30 to 50
+            score += bonusScore;
+            scoreDisplay.textContent = score;
+            // Add explosion effect or any other visual feedback for special mole
+            event.target.classList.remove('special');
+          } else {
+            // Handle regular mole click
+            score++;
+            scoreDisplay.textContent = score;
+          }
           event.target.classList.remove('show');
           hitSound.play();
           if (score % 75 === 0) {
-            level += 0.20;
+            level += 0.15;
             levelDisplay.textContent = Math.floor(level);
           }
         }
