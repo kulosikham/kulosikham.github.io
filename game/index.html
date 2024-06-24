@@ -50,27 +50,31 @@
   </div>
   <p class="text-xl">Skor: <span id="score">0</span></p>
   <p class="text-xl">Level: <span id="level">1</span></p>
-  <p class="text-xl">Total Skor Negara: <span id="countryScore">0</span></p>
   <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-700">Mulai Permainan</button>
   <button id="stopBtn" class="bg-red-500 text-white py-2 px-4 rounded mt-4 hover:bg-red-700">Berhenti</button>
 
   <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
 
+  <div class="mt-8 w-full max-w-lg">
+    <h2 class="text-2xl font-bold mb-4">Scoreboard Global</h2>
+    <ul id="scoreboard" class="list-disc list-inside">
+    </ul>
+  </div>
+
   <script>
     let score = 0;
     let level = 1;
-    let countryScore = localStorage.getItem('countryScore') || 0;
+    let country = 'Indonesia'; // Ganti dengan nama negara sesuai
+    let countryScores = JSON.parse(localStorage.getItem('countryScores')) || {};
     let moleTimerId;
 
     const holes = document.querySelectorAll('.hole');
     const scoreDisplay = document.getElementById('score');
     const levelDisplay = document.getElementById('level');
-    const countryScoreDisplay = document.getElementById('countryScore');
     const startBtn = document.getElementById('startBtn');
     const stopBtn = document.getElementById('stopBtn');
     const hitSound = document.getElementById('hitSound');
-
-    countryScoreDisplay.textContent = countryScore;
+    const scoreboard = document.getElementById('scoreboard');
 
     function randomHole(holes) {
       const index = Math.floor(Math.random() * holes.length);
@@ -107,9 +111,19 @@
     }
 
     function updateCountryScore() {
-      countryScore = parseInt(countryScore) + score;
-      localStorage.setItem('countryScore', countryScore);
-      countryScoreDisplay.textContent = countryScore;
+      countryScores[country] = (countryScores[country] || 0) + score;
+      localStorage.setItem('countryScores', JSON.stringify(countryScores));
+      renderScoreboard();
+    }
+
+    function renderScoreboard() {
+      scoreboard.innerHTML = '';
+      const sortedScores = Object.entries(countryScores).sort((a, b) => b[1] - a[1]);
+      sortedScores.forEach(([country, score]) => {
+        const li = document.createElement('li');
+        li.textContent = `${country}: ${score}`;
+        scoreboard.appendChild(li);
+      });
     }
 
     holes.forEach(hole => {
@@ -129,6 +143,9 @@
 
     startBtn.addEventListener('click', startGame);
     stopBtn.addEventListener('click', stopGame);
+
+    // Render initial scoreboard
+    renderScoreboard();
   </script>
 </body>
 </html>
