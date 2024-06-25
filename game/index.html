@@ -1,235 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Whack-a-Mole</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      grid-gap: 10px;
-      justify-content: center;
-      margin: 20px auto;
-    }
-    .hole {
-      width: 100px;
-      height: 100px;
-      background-color: #6b7280; /* Gray-500 */
-      border-radius: 0.5rem; /* Rounded */
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .mole {
-      width: 80px;
-      height: 80px;
-      background-color: #d97706; /* Amber-700 */
-      border-radius: 50%;
-      position: absolute;
-      top: 110px;
-      left: 10px;
-      transition: top 0.3s ease;
-    }
-    .mole.show {
-      top: 10px;
-    }
-    .mole-special {
-      background-color: #8b5cf6; /* Purple-600 */
-    }
-    .mole-special.show {
-      top: 10px;
-    }
-    .explosion {
-      width: 100%;
-      height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/nova-dark.png');
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      animation: explode 0.5s ease forwards;
-    }
-    @keyframes explode {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(10); opacity: 0; }
-    }
-  </style>
-</head>
-<body class="bg-gradient-to-r from-green-400 to-blue-500 flex flex-col items-center justify-center min-h-screen p-4">
-  <h1 id="gameTitle" class="text-4xl font-bold text-white mb-6 cursor-pointer">Whack-a-Mole</h1>
-  <div class="game-grid">
-    <div class="hole" id="hole1"><div class="mole"></div></div>
-    <div class="hole" id="hole2"><div class="mole"></div></div>
-    <div class="hole" id="hole3"><div class="mole"></div></div>
-    <div class="hole" id="hole4"><div class="mole"></div></div>
-    <div class="hole" id="hole5"><div class="mole"></div></div>
-    <div class="hole" id="hole6"><div class="mole"></div></div>
-    <div class="hole" id="hole7"><div class="mole"></div></div>
-    <div class="hole" id="hole8"><div class="mole"></div></div>
-    <div class="hole" id="hole9"><div class="mole"></div></div>
-  </div>
-  <div class="bg-white p-4 rounded-lg shadow-md mt-4">
-    <p class="text-xl font-semibold">Skor: <span id="score">0</span></p>
-    <p class="text-xl font-semibold">Level: <span id="level">1</span></p>
-  </div>
-  <div class="flex mt-4 space-x-4">
-    <button id="startBtn" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700">Mulai Permainan</button>
-    <button id="stopBtn" class="bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-700" style="display: none;">Berhenti</button>
-  </div>
-  <audio id="hitSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
-  <div class="mt-8 w-full max-w-lg bg-white p-4 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold mb-4 text-center">Scoreboard Global</h2>
-    <ul id="scoreboard" class="list-decimal list-inside space-y-2">
-    </ul>
-  </div>
-
-  <!-- Modal -->
-  <div id="infoModal" class="modal flex">
-    <div class="modal-content">
-      <span id="closeModal" class="float-right cursor-pointer text-gray-600">&times;</span>
-      <h2 class="text-2xl font-bold mb-4">Tentang Whack-a-Mole</h2>
-      <p>Game ini bertujuan untuk mendapatkan skor setinggi mungkin dengan memukul mole yang muncul di lubang. Setiap level akan meningkatkan kecepatan kemunculan mole.</p>
-    </div>
-  </div>
-
-  <script>
-    let score = 0;
-    let level = 1;
-    let country = 'Indonesia'; // Default country
-    let countryScores = JSON.parse(localStorage.getItem('countryScores')) || {};
-    let moleTimerId;
-    let gameStartTime;
-    let gameEndTime;
-
-    const holes = document.querySelectorAll('.hole');
-    const scoreDisplay = document.getElementById('score');
-    const levelDisplay = document.getElementById('level');
-    const startBtn = document.getElementById('startBtn');
-    const stopBtn = document.getElementById('stopBtn');
-    const hitSound = document.getElementById('hitSound');
-    const scoreboard = document.getElementById('scoreboard');
-    const gameTitle = document.getElementById('gameTitle');
-    const infoModal = document.getElementById('infoModal');
-    const closeModal = document.getElementById('closeModal');
-
-    function randomHole(holes) {
-      const index = Math.floor(Math.random() * holes.length);
-      return holes[index];
-    }
-
-    function showMole() {
-      const hole = randomHole(holes);
-      const mole = hole.querySelector('.mole');
-      mole.classList.add('show');
-
-      if (score >= 30 && Math.random() < 0.2) {
-        const specialHole = randomHole(holes);
-        const specialMole = specialHole.querySelector('.mole');
-        specialMole.classList.add('mole-special', 'show');
-      }
-
-      setTimeout(() => {
-        mole.classList.remove('show');
-        const specialMoles = document.querySelectorAll('.mole-special');
-        specialMoles.forEach(mole => mole.classList.remove('show'));
-        if (startBtn.style.display === 'none') showMole();
-      }, 800 / level);
-    }
-
-    function startGame() {
-      score = 0;
-      level = 1;
-      scoreDisplay.textContent = score;
-      levelDisplay.textContent = level;
-      startBtn.style.display = 'none';
-      stopBtn.style.display = 'inline-block';
-      gameStartTime = new Date();
-      showMole();
-    }
-
-    function stopGame() {
-      startBtn.style.display = 'inline-block';
-      stopBtn.style.display = 'none';
-      clearTimeout(moleTimerId);
-      gameEndTime = new Date();
-      updateCountryScore();
-      const duration = gameEndTime - gameStartTime;
-      const durationDate = new Date(duration);
-      alert(
-        `Permainan berakhir!\n` +
-        `Skor Anda: ${score}\n` +
-        `Level: ${Math.floor(level)}\n` +
-        `Durasi Permainan: ${durationDate.getUTCHours()} jam, ${durationDate.getUTCMinutes()} menit, ${durationDate.getUTCSeconds()} detik, ${durationDate.getUTCMilliseconds()} milidetik`
-      );
-    }
-
-    function updateCountryScore() {
-      countryScores[country] = (countryScores[country] || 0) + score;
-      localStorage.setItem('countryScores', JSON.stringify(countryScores));
-      renderScoreboard();
-    }
-
-    function renderScoreboard() {
-      scoreboard.innerHTML = '';
-      const sortedScores = Object.entries(countryScores).sort((a, b) => b[1] - a[1]);
-      sortedScores.forEach(([country, score]) => {
-        const li = document.createElement('li');
-        li.classList.add('flex', 'justify-between', 'px-2', 'py-1', 'border-b', 'border-gray-200');
-        li.innerHTML = `<span>${country}</span><span>${score}</span>`;
-        scoreboard.appendChild(li);
-      });
-    }
-
-    holes.forEach(hole => {
-      hole.addEventListener('click', (event) => {
-        if (event.target.classList.contains('mole')) {
-          score++;
-          scoreDisplay.textContent = score;
-          event.target.classList.remove('show');
-          hitSound.play();
-          if (event.target.classList.contains('mole-special')) {
-            explode(event.target.parentElement);
-            score += Math.floor(Math.random() * (50 - 30 + 1)) + 30; // Tambah skor 30-50 tambahan untuk mole khusus
-            scoreDisplay.textContent = score;
-          }
-          if (score % 75 === 0) {
-            level += 0.65;
-            levelDisplay.textContent = Math.floor(level);
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permainan Kata Sandi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .aturan {
+            display: none;
         }
-      });
-    });
+    </style>
+</head>
+<body class="bg-gray-100 p-10">
+    <div class="max-w-md mx-auto bg-white p-5 rounded shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Permainan Kata Sandi</h1>
+        <input type="password" id="kataSandi" class="w-full p-2 border border-gray-300 rounded mb-4" placeholder="Masukkan kata sandi Anda" oninput="periksaKataSandi()">
+        <div id="aturan" class="aturan p-4 bg-gray-200 rounded mb-4">
+            <h2 class="text-xl font-semibold mb-2">Aturan Kata Sandi:</h2>
+            <ul id="daftar-aturan" class="list-disc list-inside text-gray-700"></ul>
+        </div>
+        <button id="aturan-selanjutnya" class="w-full bg-blue-500 text-white p-2 rounded" onclick="tambahAturan()">Tambah Aturan</button>
+    </div>
 
-    function explode(container) {
-      const explosion = document.createElement('div');
-      explosion.classList.add('explosion');
-      container.appendChild(explosion);
-      setTimeout(() => {
-        explosion.remove();
-      }, 500);
-    }
+    <script>
+        const aturan = [
+            "Minimal 8 karakter",
+            "Harus mengandung angka",
+            "Harus mengandung karakter khusus (!@#$%^&*)",
+            "Harus mengandung huruf besar",
+            "Tidak boleh mengandung kata 'password'",
+            "Harus mengandung huruf kecil"
+        ];
 
-    startBtn.addEventListener('click', startGame);
-    stopBtn.addEventListener('click', stopGame);
+        let indeksAturanSaatIni = 0;
 
-    gameTitle.addEventListener('click', () => {
-      infoModal.style.display = 'flex';
-    });
+        function tambahAturan() {
+            if (indeksAturanSaatIni < aturan.length) {
+                const aturanDiv = document.getElementById("aturan");
+                const daftarAturan = document.getElementById("daftar-aturan");
+                aturanDiv.style.display = "block";
+                const li = document.createElement("li");
+                li.innerText = aturan[indeksAturanSaatIni];
+                daftarAturan.appendChild(li);
+                indeksAturanSaatIni++;
+            }
+        }
 
-    closeModal.addEventListener('click', () => {
-      infoModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (event) => {
-      if (event.target === infoModal) {
-        infoModal.style.display = 'none';
-      }
-    });
-
-    // Render initial scoreboard
-    renderScoreboard();
-  </script>
+        function periksaKataSandi() {
+            const kataSandi = document.getElementById("kataSandi").value;
+            const daftarAturan = document.getElementById("daftar-aturan").children;
+            for (let i = 0; i < daftarAturan.length; i++) {
+                const teksAturan = daftarAturan[i].innerText;
+                if (teksAturan.includes("Minimal 8 karakter") && kataSandi.length >= 8) {
+                    daftarAturan[i].classList.add("line-through");
+                } else if (teksAturan.includes("mengandung angka") && /\d/.test(kataSandi)) {
+                    daftarAturan[i].classList.add("line-through");
+                } else if (teksAturan.includes("mengandung karakter khusus") && /[!@#$%^&*]/.test(kataSandi)) {
+                    daftarAturan[i].classList.add("line-through");
+                } else if (teksAturan.includes("mengandung huruf besar") && /[A-Z]/.test(kataSandi)) {
+                    daftarAturan[i].classList.add("line-through");
+                } else if (teksAturan.includes("tidak boleh mengandung kata 'password'") && !/password/i.test(kataSandi)) {
+                    daftarAturan[i].classList.add("line-through");
+                } else if (teksAturan.includes("mengandung huruf kecil") && /[a-z]/.test(kataSandi)) {
+                    daftarAturan[i].classList.add("line-through");
+                } else {
+                    daftarAturan[i].classList.remove("line-through");
+                }
+            }
+        }
+    </script>
 </body>
 </html>
