@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Read More Generator</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -12,10 +12,6 @@
         <div class="mb-4">
             <label for="message" class="block text-sm font-medium text-gray-700">Pesan</label>
             <textarea id="message" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
-        </div>
-        <div class="mb-4">
-            <label for="hiddenMessage" class="block text-sm font-medium text-gray-700">Pesan Tersembunyi</label>
-            <textarea id="hiddenMessage" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" rows="4"></textarea>
         </div>
         <button onclick="generateMessage()" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Generate</button>
         <div id="resultContainer" class="mt-4 hidden">
@@ -28,8 +24,11 @@
     <script>
         function generateMessage() {
             const message = document.getElementById('message').value;
-            const hiddenMessage = document.getElementById('hiddenMessage').value;
-            const readMoreMessage = `${message} \n \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n \u200B \n ${hiddenMessage}`;
+            const maxLength = 66; // Panjang maksimum pesan sebelum "baca selengkapnya"
+            let truncatedMessage = message.substring(0, maxLength);
+            let hiddenMessage = message.substring(maxLength);
+            hiddenMessage = hiddenMessage.replace(/\n/g, '%0A'); // Encode newline character
+            const readMoreMessage = `${truncatedMessage}... %0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A%0A${hiddenMessage}`;
             document.getElementById('result').value = readMoreMessage;
             document.getElementById('resultContainer').classList.remove('hidden');
         }
