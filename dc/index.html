@@ -3,29 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invite Page</title>
+    <title>Join Our Discord Server!</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background-image: url('https://source.unsplash.com/random/1920x1080');
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url('https://source.unsplash.com/random/1920x1080') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
         }
-        .overlay {
-            background: rgba(0, 0, 0, 0.7);
+        .neon-text {
+            color: #fff;
+            text-shadow: 
+                0 0 5px #00e6e6,
+                0 0 10px #00e6e6,
+                0 0 20px #00e6e6,
+                0 0 40px #00e6e6,
+                0 0 80px #00e6e6;
         }
-        .animate-bounce-slow {
-            animation: bounce 2s infinite;
+        .neon-button {
+            color: #fff;
+            background: linear-gradient(90deg, #00e6e6, #0056b3);
+            box-shadow: 
+                0 0 5px #00e6e6,
+                0 0 10px #00e6e6,
+                0 0 20px #00e6e6,
+                0 0 40px #00e6e6,
+                0 0 80px #00e6e6;
+        }
+        .neon-button:hover {
+            background: linear-gradient(90deg, #0056b3, #00e6e6);
         }
     </style>
 </head>
 <body class="flex items-center justify-center h-screen">
-    <div class="overlay p-10 rounded-lg shadow-lg text-center">
-        <h1 class="text-5xl text-white font-bold mb-4">Join Our Discord Server!</h1>
-        <p class="text-2xl text-gray-300 mb-8">Click the button below to join our awesome community.</p>
+    <div class="text-center p-8 bg-black bg-opacity-50 rounded-lg shadow-2xl">
+        <h1 class="text-6xl neon-text font-extrabold mb-4 animate-pulse">Join Our Discord Server!</h1>
+        <p class="text-2xl text-gray-300 mb-10">Click the button below to become a part of our amazing community.</p>
         <button 
             id="invite-button" 
-            class="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-500 hover:scale-110 animate-bounce-slow"
+            class="neon-button text-lg font-bold py-3 px-6 rounded-full transition duration-500 transform hover:scale-110"
         >
             Join Now
         </button>
