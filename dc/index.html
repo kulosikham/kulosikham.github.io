@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://source.unsplash.com/random/1920x1080');
+            background-size: cover;
+            background-position: center;
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .animate-bounce-slow {
+            animation: bounce 2s infinite;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen">
+    <div class="overlay p-10 rounded-lg shadow-lg text-center">
+        <h1 class="text-5xl text-white font-bold mb-4">Join Our Discord Server!</h1>
+        <p class="text-2xl text-gray-300 mb-8">Click the button below to join our awesome community.</p>
+        <button 
+            id="invite-button" 
+            class="bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-500 hover:scale-110 animate-bounce-slow"
+        >
+            Join Now
+        </button>
+    </div>
+    <script>
+        document.getElementById('invite-button').addEventListener('click', function() {
+            window.location.href = 'https://discord.com/invite/2yr5WMKD2H';
+        });
+    </script>
+</body>
+</html>
