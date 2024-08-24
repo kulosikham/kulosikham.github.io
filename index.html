@@ -2,31 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netshop.id - Your One-Stop Digital Store</title>
-    <meta name="description" content="Netshop.id is your go-to online store for digital products including software, subscriptions, and more.">
-    <meta name="keywords" content="digital store, software, subscriptions, online shop, digital products">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-            color: #343a40;
+            background-color: #292929;
+            color: #ffffff;
         }
+
         .navbar-brand img {
             max-height: 40px;
         }
-        .navbar, .footer {
-            background-color: #007bff;
-        }
-        .navbar .nav-link, .footer a {
-            color: #ffffff !important;
-        }
-        .navbar .nav-link:hover, .footer a:hover {
-            color: #f8f9fa !important;
-            text-decoration: underline;
-        }
+
+        /* Hero Section */
         .hero-section {
             background-image: url('hero-bg.jpg');
             background-size: cover;
@@ -36,80 +27,63 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #ffffff;
-            background-color: rgba(0, 123, 255, 0.7);
         }
+
         .hero-section h1 {
             font-size: 3.5rem;
             font-weight: bold;
         }
+
         .hero-section p {
             font-size: 1.5rem;
             margin-bottom: 20px;
         }
+
         .hero-section .btn-primary {
             padding: 10px 30px;
             font-size: 1.2rem;
-            background-color: #ffffff;
-            color: #007bff;
-            border: none;
         }
-        .hero-section .btn-primary:hover {
-            background-color: #343a40;
-            color: #ffffff;
-        }
+
+        /* Featured Products */
         .featured-products .card {
             transition: transform 0.3s ease;
-            background-color: #ffffff;
-            border: 1px solid #007bff;
         }
+
         .featured-products .card:hover {
             transform: scale(1.05);
-            border-color: #343a40;
         }
-        .featured-products .card-title, .featured-products .card-text {
-            color: #007bff;
-        }
-        .featured-products .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-        .featured-products .btn-primary:hover {
-            background-color: #343a40;
-        }
-        .best-sellers .product-item, .new-arrivals .product-item {
+
+        /* Categories Section */
+        .categories .category-item {
             transition: transform 0.3s ease;
-            background-color: #ffffff;
-            border: 1px solid #007bff;
-            padding: 20px;
-            text-align: center;
         }
-        .best-sellers .product-item:hover, .new-arrivals .product-item:hover {
+
+        .categories .category-item:hover {
             transform: scale(1.1);
-            border-color: #343a40;
         }
-        .best-sellers h5, .new-arrivals h5 {
-            color: #007bff;
+
+        /* Promotions Section */
+        .promotions .promotion-item {
+            transition: background-color 0.3s ease;
         }
-        .newsletter {
-            background-color: #007bff;
+
+        .promotions .promotion-item:hover {
+            background-color: #1c1c1c;
+        }
+
+        /* Testimonials Section */
+        .testimonials blockquote {
+            border-left: 5px solid #007bff;
+            padding-left: 15px;
+        }
+
+        /* Footer */
+        footer a {
             color: #ffffff;
+            text-decoration: none;
         }
-        .newsletter .btn-primary {
-            background-color: #ffffff;
-            color: #007bff;
-        }
-        .newsletter .btn-primary:hover {
-            background-color: #343a40;
-            color: #ffffff;
-        }
-        .footer {
-            padding: 20px 0;
-        }
-        .footer a {
-            color: #ffffff;
-        }
-        .footer a:hover {
+
+        footer a:hover {
             text-decoration: underline;
         }
     </style>
@@ -143,7 +117,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section text-center d-flex align-items-center justify-content-center">
+    <section class="hero-section text-center text-white d-flex align-items-center justify-content-center">
         <div class="container">
             <h1>Welcome to netshop.id</h1>
             <p>Your One-Stop Digital Store</p>
@@ -167,62 +141,42 @@
                         </div>
                     </div>
                 </div>
-                <!-- Product Card 2 -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="product2.jpg" class="card-img-top" alt="Product 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 2</h5>
-                            <p class="card-text">$30.00</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="product3.jpg" class="card-img-top" alt="Product 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 3</h5>
-                            <p class="card-text">$25.00</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
+                <!-- Repeat similar structure for other products -->
             </div>
         </div>
     </section>
 
-    <!-- Best Sellers Section -->
-    <section class="best-sellers py-5 bg-light">
+    <!-- Categories Section -->
+    <section class="categories py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-4">Our Best Sellers</h2>
+            <h2 class="text-center mb-4">Browse by Category</h2>
             <div class="row">
-                <!-- Best Seller 1 -->
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <img src="best-seller1.jpg" alt="Best Seller 1" class="img-fluid">
-                        <h5 class="mt-2">Product A</h5>
+                <!-- Category 1 -->
+                <div class="col-md-3 text-center">
+                    <div class="category-item p-3">
+                        <img src="category1.png" alt="Category 1" class="img-fluid">
+                        <h5 class="mt-2">Software</h5>
                     </div>
                 </div>
-                <!-- Repeat similar structure for other best sellers -->
+                <!-- Repeat similar structure for other categories -->
             </div>
         </div>
     </section>
 
-    <!-- New Arrivals Section -->
-    <section class="new-arrivals py-5">
+    <!-- Promotions Section -->
+    <section class="promotions py-5">
         <div class="container">
-            <h2 class="text-center mb-4">New Arrivals</h2>
+            <h2 class="text-center mb-4">Exclusive Deals</h2>
             <div class="row">
-                <!-- New Arrival 1 -->
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <img src="new-arrival1.jpg" alt="New Arrival 1" class="img-fluid">
-                        <h5 class="mt-2">Product B</h5>
+                <!-- Promotion 1 -->
+                <div class="col-md-6">
+                    <div class="promotion-item p-4 bg-dark text-white text-center">
+                        <h4>50% Off on All Software</h4>
+                        <p>Get the best deals on our software collection.</p>
+                        <a href="#" class="btn btn-outline-light">Shop Now</a>
                     </div>
                 </div>
-                <!-- Repeat similar structure for other new arrivals -->
+                <!-- Repeat similar structure for other promotions -->
             </div>
         </div>
     </section>
@@ -233,10 +187,10 @@
             <h2 class="text-center mb-4">What Our Customers Say</h2>
             <div class="row">
                 <!-- Testimonial 1 -->
-                <div class="col-md-6">
-                    <blockquote>
-                        <p>"Great service and amazing products!"</p>
-                        <footer>- John Doe</footer>
+                <div class="col-md-4 text-center">
+                    <blockquote class="blockquote">
+                        <p>"Great experience! Highly recommend."</p>
+                        <footer class="blockquote-footer">John Doe</footer>
                     </blockquote>
                 </div>
                 <!-- Repeat similar structure for other testimonials -->
@@ -245,31 +199,49 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section class="newsletter py-5 text-center text-light">
-        <div class="container">
-            <h2 class="mb-4">Subscribe to Our Newsletter</h2>
-            <form class="form-inline d-flex justify-content-center">
+    <section class="newsletter py-5">
+        <div class="container text-center">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for the latest updates.</p>
+            <form class="d-inline-flex">
                 <input type="email" class="form-control me-2" placeholder="Enter your email">
                 <button type="submit" class="btn btn-primary">Subscribe</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer text-center text-light">
-        <div class="container">
-            <p>&copy; 2024 Netshop.id - All Rights Reserved</p>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-                <li class="list-inline-item"><a href="#">Terms of Service</a></li>
-            </ul>
+    <!-- Footer Section -->
+    <footer class="py-4 bg-dark text-white">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Home</a></li>
+                        <li><a href="#" class="text-white">Products</a></li>
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>Email: support@netshop.id</p>
+                    <p>Phone: +62 123 4567</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Add interactivity here, such as animations or other dynamic effects.
+        // You can add interactivity here, such as animations or other dynamic effects.
     </script>
 </body>
 </html>
