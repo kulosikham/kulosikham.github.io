@@ -19,7 +19,6 @@
             align-items: center;
             padding: 20px;
             background-color: #333;
-            position: relative;
         }
 
         .logo img {
@@ -34,8 +33,7 @@
             justify-content: center;
             align-items: center;
             gap: 5px;
-            position: absolute;
-            right: 20px;
+            margin-right: 20px;
         }
 
         .hamburger div {
@@ -97,6 +95,8 @@
 
             .hamburger {
                 display: flex;
+                position: relative;
+                right: 0;
             }
 
             @keyframes slideDown {
@@ -240,10 +240,10 @@
 
         .testimonials {
             padding: 50px 20px;
-            background-color: #292929;
             color: white;
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
 
         .testimonials h2 {
@@ -256,16 +256,25 @@
             display: flex;
             justify-content: center;
             gap: 30px;
-            animation: slideTestimonials 20s linear infinite;
+            animation: slideTestimonials 21s linear infinite;
+            position: relative;
         }
 
         .testimonial-item {
-            flex: 0 0 80%;
-            max-width: 400px;
-            background-color: #333;
-            padding: 20px;
+            flex: 0 0 100%;
+            max-width: 100%;
+            background-size: cover;
+            background-position: center;
+            padding: 50px 20px;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.5s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            color: white;
         }
 
         .testimonial-item p {
@@ -279,10 +288,9 @@
         }
 
         @keyframes slideTestimonials {
-            0% {transform: translateX(0);}
-            25% {transform: translateX(-100%);}
-            50% {transform: translateX(-200%);}
-            75% {transform: translateX(-300%);}
+            0%, 25% {transform: translateX(0);}
+            33.33%, 58.33% {transform: translateX(-100%);}
+            66.66%, 91.66% {transform: translateX(-200%);}
             100% {transform: translateX(0);}
         }
 
@@ -341,10 +349,11 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Welcome to netshop.id</h1>
-            <p>Dipercaya sebagai penyedia layanan cloud dan digital sejak 2021</p>
-            <button onclick="shopNow()">Shop Now</button>
+            <p>Your one-stop shop for all digital products.</p>
+            <button>Explore Now</button>
         </div>
     </section>
+
     <section class="products" id="products">
         <h2>Our Featured Products</h2>
         <div class="product-grid">
@@ -361,7 +370,7 @@
                 <button>Order</button>
             </div>
             <div class="product-item">
-                <img src="allkey/netshop.display.spotify.png" alt="Spotify Premium">
+                <img src="allkey/netshop.display.spotify.png" alt="Spotify Premium - Display">
                 <h3>Spotify Premium</h3>
                 <p class="price">IDR 9.900/month</p>
                 <button>Order</button>
@@ -374,22 +383,22 @@
         <div class="benefit-item">
             <div class="benefit-icon">🚀</div>
             <div>
-                <h3>Layanan Terbaik</h3>
-                <p>Menawarkan layanan terbaik dengan harga terjangkau dan berkualitas.</p>
+                <h4>Proses Cepat</h4>
+                <p>Kami menjamin semua proses pembelian berjalan cepat dan aman.</p>
             </div>
         </div>
         <div class="benefit-item">
-            <div class="benefit-icon">🔒</div>
+            <div class="benefit-icon">💳</div>
             <div>
-                <h3>Keamanan Terjamin</h3>
-                <p>Transaksi aman dengan sistem pembayaran yang terpercaya.</p>
+                <h4>Pembayaran Aman</h4>
+                <p>Kami menyediakan berbagai metode pembayaran yang aman dan nyaman.</p>
             </div>
         </div>
         <div class="benefit-item">
-            <div class="benefit-icon">💬</div>
+            <div class="benefit-icon">💼</div>
             <div>
-                <h3>Dukungan 24/7</h3>
-                <p>Tim kami siap membantu Anda kapan saja dengan dukungan 24/7.</p>
+                <h4>Layanan Profesional</h4>
+                <p>Tim kami siap membantu Anda dengan layanan pelanggan terbaik.</p>
             </div>
         </div>
     </section>
@@ -397,15 +406,15 @@
     <section class="testimonials">
         <h2>Testimoni Klien</h2>
         <div class="testimonial-slider">
-            <div class="testimonial-item">
+            <div class="testimonial-item" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('background-image1.jpg');">
                 <p>"Layanan netshop.id sangat memuaskan! Proses cepat dan aman. Sangat direkomendasikan!"</p>
                 <h4>John Doe</h4>
             </div>
-            <div class="testimonial-item">
+            <div class="testimonial-item" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('background-image2.jpg');">
                 <p>"Produk-produk digital yang ditawarkan di netshop.id selalu berkualitas tinggi."</p>
                 <h4>Jane Smith</h4>
             </div>
-            <div class="testimonial-item">
+            <div class="testimonial-item" style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('background-image3.jpg');">
                 <p>"Harga yang sangat kompetitif dengan layanan yang luar biasa."</p>
                 <h4>Michael Brown</h4>
             </div>
@@ -413,17 +422,15 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 netshop.id. All rights reserved.</p>
+        &copy; 2024 netshop.id. All rights reserved.
     </footer>
 
     <script>
         function toggleMenu() {
-            document.querySelector('.hamburger').classList.toggle('active');
-            document.querySelector('nav ul').classList.toggle('active');
-        }
-
-        function shopNow() {
-            alert("Navigating to shop now...");
+            var menu = document.querySelector('nav ul');
+            var hamburger = document.querySelector('.hamburger');
+            menu.classList.toggle('active');
+            hamburger.classList.toggle('active');
         }
     </script>
 </body>
