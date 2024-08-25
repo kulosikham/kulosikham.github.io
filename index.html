@@ -19,6 +19,7 @@
             align-items: center;
             padding: 20px;
             background-color: #333;
+            position: relative;
         }
 
         .logo img {
@@ -33,7 +34,8 @@
             justify-content: center;
             align-items: center;
             gap: 5px;
-            margin-right: 20px;
+            position: absolute;
+            right: 20px;
         }
 
         .hamburger div {
@@ -95,8 +97,6 @@
 
             .hamburger {
                 display: flex;
-                position: relative;
-                right: 0;
             }
 
             @keyframes slideDown {
@@ -238,6 +238,54 @@
             margin-right: 20px;
         }
 
+        .testimonials {
+            padding: 50px 20px;
+            background-color: #292929;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .testimonials h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            animation: slideTestimonials 20s linear infinite;
+        }
+
+        .testimonial-item {
+            flex: 0 0 80%;
+            max-width: 400px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .testimonial-item p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-item h4 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        @keyframes slideTestimonials {
+            0% {transform: translateX(0);}
+            25% {transform: translateX(-100%);}
+            50% {transform: translateX(-200%);}
+            75% {transform: translateX(-300%);}
+            100% {transform: translateX(0);}
+        }
+
         footer {
             background-color: #333;
             text-align: center;
@@ -297,7 +345,6 @@
             <button onclick="shopNow()">Shop Now</button>
         </div>
     </section>
-
     <section class="products" id="products">
         <h2>Our Featured Products</h2>
         <div class="product-grid">
@@ -325,31 +372,42 @@
     <section class="benefits">
         <h2>Keuntungan dari netshop.id</h2>
         <div class="benefit-item">
-            <div class="benefit-icon">&#128640;</div>
+            <div class="benefit-icon">🚀</div>
             <div>
-                <h3>Proses Gercep</h3>
-                <p>Dapatkan servermu segera dengan teknologi pengiriman instan kami.</p>
+                <h3>Layanan Terbaik</h3>
+                <p>Menawarkan layanan terbaik dengan harga terjangkau dan berkualitas.</p>
             </div>
         </div>
         <div class="benefit-item">
-            <div class="benefit-icon">&#128293;</div>
+            <div class="benefit-icon">🔒</div>
             <div>
-                <h3>Kontrol Panel</h3>
-                <p>Bangun server Anda dengan kontrol panel yang mudah digunakan.</p>
+                <h3>Keamanan Terjamin</h3>
+                <p>Transaksi aman dengan sistem pembayaran yang terpercaya.</p>
             </div>
         </div>
         <div class="benefit-item">
-            <div class="benefit-icon">&#128274;</div>
+            <div class="benefit-icon">💬</div>
             <div>
-                <h3>Proteksi DDoS</h3>
-                <p>Kami memberikan proteksi DDoS terbaik yang pernah ada di penjuru dunia.</p>
+                <h3>Dukungan 24/7</h3>
+                <p>Tim kami siap membantu Anda kapan saja dengan dukungan 24/7.</p>
             </div>
         </div>
-        <div class="benefit-item">
-            <div class="benefit-icon">&#128337;</div>
-            <div>
-                <h3>Latensi Rendah</h3>
-                <p>Kami menjamin latensi yang sangat rendah terutama di Indonesia.</p>
+    </section>
+
+    <section class="testimonials">
+        <h2>Testimoni Klien</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial-item">
+                <p>"Layanan netshop.id sangat memuaskan! Proses cepat dan aman. Sangat direkomendasikan!"</p>
+                <h4>John Doe</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Produk-produk digital yang ditawarkan di netshop.id selalu berkualitas tinggi."</p>
+                <h4>Jane Smith</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Harga yang sangat kompetitif dengan layanan yang luar biasa."</p>
+                <h4>Michael Brown</h4>
             </div>
         </div>
     </section>
@@ -360,19 +418,13 @@
 
     <script>
         function toggleMenu() {
-            const nav = document.querySelector('nav ul');
-            const hamburger = document.querySelector('.hamburger');
-            nav.classList.toggle('active');
-            hamburger.classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+            document.querySelector('nav ul').classList.toggle('active');
         }
 
         function shopNow() {
-            window.location.href = 'products';
+            alert("Navigating to shop now...");
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Welcome to netshop.id!');
-        });
     </script>
 </body>
 </html>
