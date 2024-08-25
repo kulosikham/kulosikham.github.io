@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk | netshop.id</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #292929;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-bar input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .products {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .products h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-item {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .product-item h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .product-item .price {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: white;
+        }
+
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="netshop.id">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for products...">
+    </div>
+
+    <section class="products">
+        <h2>Our Products</h2>
+        <div id="productGrid" class="product-grid">
+            <!-- Produk akan ditambahkan di sini secara dinamis -->
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 netshop.id. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const products = [];
+
+        // Fungsi untuk mengambil data dari stock1.json
+        fetch('stock1.json')
+            .then(response => response.json())
+            .then(data => {
+                products.push(...data);
+                displayProducts(products);
+            });
+
+        // Fungsi untuk menampilkan produk
+        function displayProducts(productList) {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = '';
+
+            productList.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+
+                productItem.innerHTML = `
+                    <img src="${product.url}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="price">$${product.price}</p>
+                `;
+
+                productGrid.appendChild(productItem);
+            });
+        }
+
+        // Fungsi untuk mencari produk
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchQuery = this.value.toLowerCase();
+            const filteredProducts = products.filter(product =>
+                product.name.toLowerCase().includes(searchQuery)
+            );
+            displayProducts(filteredProducts);
+        });
+    </script>
+</body>
+</html>
