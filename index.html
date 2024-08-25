@@ -3,245 +3,376 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netshop.id - Your One-Stop Digital Store</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>netshop.id - Digital Store</title>
     <style>
-        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             background-color: #292929;
-            color: #ffffff;
+            color: white;
+            margin: 0;
+            padding: 0;
         }
 
-        .navbar-brand img {
-            max-height: 40px;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background-image: url('hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+        header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
             justify-content: center;
-            text-align: center;
+            align-items: center;
+            gap: 5px;
+            margin-right: 20px;
         }
 
-        .hero-section h1 {
-            font-size: 3.5rem;
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
 
-        .hero-section p {
-            font-size: 1.5rem;
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        nav ul.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 20px;
+            }
+
+            nav ul.active {
+                display: flex;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .hamburger {
+                display: flex;
+                position: relative;
+                right: 0;
+            }
+
+            @keyframes slideDown {
+                from {
+                    transform: translateY(-100%);
+                }
+                to {
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .hero {
+            background: url('hero.jpg') no-repeat center center/cover;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
         }
 
-        .hero-section .btn-primary {
-            padding: 10px 30px;
-            font-size: 1.2rem;
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
         }
 
-        /* Featured Products */
-        .featured-products .card {
-            transition: transform 0.3s ease;
+        .hero-content button {
+            font-size: 18px;
+            padding: 10px 20px;
+            color: #292929;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 1.5s ease-out;
         }
 
-        .featured-products .card:hover {
+        .hero-content button:hover {
+            background-color: #ddd;
             transform: scale(1.05);
         }
 
-        /* Categories Section */
-        .categories .category-item {
+        .products {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .products h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .product-item {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
             transition: transform 0.3s ease;
         }
 
-        .categories .category-item:hover {
-            transform: scale(1.1);
+        .product-item:hover {
+            transform: scale(1.05);
         }
 
-        /* Promotions Section */
-        .promotions .promotion-item {
-            transition: background-color 0.3s ease;
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
         }
 
-        .promotions .promotion-item:hover {
-            background-color: #1c1c1c;
+        .product-item h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
         }
 
-        /* Testimonials Section */
-        .testimonials blockquote {
-            border-left: 5px solid #007bff;
-            padding-left: 15px;
+        .product-item .price {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #f39c12;
         }
 
-        /* Footer */
-        footer a {
-            color: #ffffff;
-            text-decoration: none;
+        .product-item button {
+            font-size: 16px;
+            padding: 10px 20px;
+            color: #292929;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .product-item button:hover {
+            background-color: #ddd;
+            transform: scale(1.05);
+        }
+
+        .benefits {
+            padding: 50px 20px;
+            background-color: #222;
+            color: #ddd;
+            text-align: left;
+        }
+
+        .benefits h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .benefit-item:hover {
+            transform: scale(1.05);
+        }
+
+        .benefit-icon {
+            font-size: 30px;
+            margin-right: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- Header Section -->
-    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="logo.png" alt="netshop.id" height="30">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-house"></i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-box"></i> Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-info-circle"></i> About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-envelope"></i> Contact</a></li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-                <a href="#" class="btn btn-outline-light ms-2"><i class="bi bi-cart"></i></a>
-                <a href="#" class="btn btn-outline-light ms-2"><i class="bi bi-person"></i></a>
-            </div>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="netshop.id">
         </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center text-white d-flex align-items-center justify-content-center">
-        <div class="container">
+    <section class="hero">
+        <div class="hero-content">
             <h1>Welcome to netshop.id</h1>
-            <p>Your One-Stop Digital Store</p>
-            <a href="#" class="btn btn-primary btn-lg">Shop Now</a>
+            <p>Your one-stop digital store for all your needs.</p>
+            <button onclick="shopNow()">Shop Now</button>
         </div>
     </section>
 
-    <!-- Featured Products Section -->
-    <section class="featured-products py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Featured Products</h2>
-            <div class="row">
-                <!-- Product Card 1 -->
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="product1.jpg" class="card-img-top" alt="Product 1">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 1</h5>
-                            <p class="card-text">$20.00</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Repeat similar structure for other products -->
+    <section class="products" id="products">
+        <h2>Our Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="domain.png" alt="Domain Names">
+                <h3>Domain Names</h3>
+                <p class="price">$9.99/year</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="product-item">
+                <img src="discord.png" alt="Discord Nitro">
+                <h3>Discord Nitro</h3>
+                <p class="price">$4.99/month</p>
+                <button>Buy Now</button>
+            </div>
+            <div class="product-item">
+                <img src="spotify.png" alt="Spotify Premium">
+                <h3>Spotify Premium</h3>
+                <p class="price">$9.99/month</p>
+                <button>Buy Now</button>
             </div>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Browse by Category</h2>
-            <div class="row">
-                <!-- Category 1 -->
-                <div class="col-md-3 text-center">
-                    <div class="category-item p-3">
-                        <img src="category1.png" alt="Category 1" class="img-fluid">
-                        <h5 class="mt-2">Software</h5>
-                    </div>
-                </div>
-                <!-- Repeat similar structure for other categories -->
+    <section class="benefits">
+        <h2>Keuntungan dari netshop.id</h2>
+        <div class="benefit-item">
+            <div class="benefit-icon">&#128640;</div>
+            <div>
+                <h3>Proses Gercep</h3>
+                <p>Dapatkan servermu segera dengan teknologi pengiriman instan kami.</p>
+            </div>
+        </div>
+        <div class="benefit-item">
+            <div class="benefit-icon">&#128293;</div>
+            <div>
+                <h3>Kontrol Panel</h3>
+                <p>Bangun server Anda dengan kontrol panel yang mudah digunakan.</p>
+            </div>
+        </div>
+        <div class="benefit-item">
+            <div class="benefit-icon">&#128274;</div>
+            <div>
+                <h3>Proteksi DDoS</h3>
+                <p>Kami memberikan proteksi DDoS terbaik yang pernah ada di penjuru dunia.</p>
+            </div>
+        </div>
+        <div class="benefit-item">
+            <div class="benefit-icon">&#128337;</div>
+            <div>
+                <h3>Latensi Rendah</h3>
+                <p>Kami menjamin latensi yang sangat rendah terutama di Indonesia.</p>
             </div>
         </div>
     </section>
 
-    <!-- Promotions Section -->
-    <section class="promotions py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Exclusive Deals</h2>
-            <div class="row">
-                <!-- Promotion 1 -->
-                <div class="col-md-6">
-                    <div class="promotion-item p-4 bg-dark text-white text-center">
-                        <h4>50% Off on All Software</h4>
-                        <p>Get the best deals on our software collection.</p>
-                        <a href="#" class="btn btn-outline-light">Shop Now</a>
-                    </div>
-                </div>
-                <!-- Repeat similar structure for other promotions -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">What Our Customers Say</h2>
-            <div class="row">
-                <!-- Testimonial 1 -->
-                <div class="col-md-4 text-center">
-                    <blockquote class="blockquote">
-                        <p>"Great experience! Highly recommend."</p>
-                        <footer class="blockquote-footer">John Doe</footer>
-                    </blockquote>
-                </div>
-                <!-- Repeat similar structure for other testimonials -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter py-5">
-        <div class="container text-center">
-            <h2>Stay Updated</h2>
-            <p>Subscribe to our newsletter for the latest updates.</p>
-            <form class="d-inline-flex">
-                <input type="email" class="form-control me-2" placeholder="Enter your email">
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="py-4 bg-dark text-white">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Home</a></li>
-                        <li><a href="#" class="text-white">Products</a></li>
-                        <li><a href="#" class="text-white">About Us</a></li>
-                        <li><a href="#" class="text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
-                </div>
-                <div class="col-md-4">
-                    <h5>Contact Us</h5>
-                    <p>Email: support@netshop.id</p>
-                    <p>Phone: +62 123 4567</p>
-                </div>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; 2024 netshop.id. All rights reserved.</p>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // You can add interactivity here, such as animations or other dynamic effects.
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function shopNow() {
+            window.location.href = '#products';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Welcome to netshop.id!');
+        });
     </script>
 </body>
 </html>
