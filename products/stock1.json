@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Spotify Premium",
+        "url": "https://example.com/images/spotify.jpg",
+        "price": 7.99
+    },
+    {
+        "name": "YouTube Premium",
+        "url": "https://example.com/images/youtube.jpg",
+        "price": 11.99
+    },
+    {
+        "name": "Netflix Standard",
+        "url": "https://example.com/images/netflix.jpg",
+        "price": 13.99
+    },
+    {
+        "name": "Domain Name .com",
+        "url": "https://example.com/images/domain.jpg",
+        "price": 9.99
+    },
+    {
+        "name": "Discord Nitro",
+        "url": "https://example.com/images/discord.jpg",
+        "price": 4.99
+    }
+]
