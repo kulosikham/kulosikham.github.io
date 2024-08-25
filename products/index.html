@@ -26,16 +26,60 @@
             height: 50px;
         }
 
+        nav {
+            position: relative;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
             gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
         }
 
         nav ul li a {
             text-decoration: none;
             color: white;
             font-weight: bold;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #333;
+                width: 100%;
+                display: none;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
         }
 
         .search-bar {
@@ -120,7 +164,12 @@
             <img src="/allkey/netshop.display.iconnav.png" alt="netshop.id">
         </div>
         <nav>
-            <ul>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul id="navLinks">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Products</a></li>
                 <li><a href="#">About</a></li>
@@ -199,6 +248,12 @@
                 product.name.toLowerCase().includes(searchQuery)
             );
             displayProducts(filteredProducts);
+        });
+
+        // Fungsi untuk toggle menu hamburger
+        document.getElementById('hamburger').addEventListener('click', function () {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
         });
     </script>
 </body>
