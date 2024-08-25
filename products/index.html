@@ -79,6 +79,7 @@
             border-radius: 10px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .product-item:hover {
@@ -175,6 +176,11 @@
             productList.forEach(product => {
                 const productItem = document.createElement('div');
                 productItem.className = 'product-item';
+                
+                // Tambahkan event listener untuk redirect ke halaman detail
+                productItem.addEventListener('click', () => {
+                    window.location.href = product.detailUrl;
+                });
 
                 productItem.innerHTML = `
                     <img src="${product.url}" alt="${product.name}">
