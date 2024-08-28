@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk | netshop.id</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #292929;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-right: 20px;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        nav ul.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 20px;
+            }
+
+            nav ul.active {
+                display: flex;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .hamburger {
+                display: flex;
+                position: absolute;
+                top: 35px;
+                right: 20px;
+            }
+
+            @keyframes slideDown {
+                from {
+                    transform: translateY(-100%);
+                }
+                to {
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .product-container {
+            padding: 50px 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-details h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .product-details .price {
+            font-size: 28px;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        .product-details p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .product-details .category {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #888;
+        }
+
+        .product-details .features ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .product-details .features li {
+            margin-bottom: 5px;
+        }
+
+        .buy-now {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .buy-now button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #f39c12;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-now button:hover {
+            background-color: #e67e22;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .modal-content a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 18px;
+            color: white;
+            background-color: #f39c12;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content a:hover {
+            background-color: #e67e22;
+        }
+
+        .modal-content .close {
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            float: right;
+        }
+
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/allkey/netshop.display.iconnav.png" alt="netshop.id">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="product-container">
+        <div>
+            <img src="https://example.com/images/product-image.jpg" alt="Product Name" class="product-image">
+        </div>
+        <div class="product-details">
+            <h1>Product Name</h1>
+            <p class="price">IDR 7.99</p>
+            <p class="category">Category: Streaming Services</p>
+            <p>Deskripsi Produk: Produk ini memberikan akses tanpa batas ke layanan premium. Nikmati berbagai fitur eksklusif yang tidak tersedia dalam versi gratis.</p>
+
+            <div class="features">
+                <h3>Fitur Produk:</h3>
+                <ul>
+                    <li>Akses tanpa iklan</li>
+                    <li>Pemutaran offline</li>
+                    <li>Konten eksklusif</li>
+                    <li>Streaming berkualitas tinggi</li>
+                </ul>
+            </div>
+
+            <div class="additional-info">
+                <h3>Informasi Tambahan:</h3>
+                <p>Durasi Langganan: 1 bulan</p>
+                <p>Kompatibilitas: Windows, Mac, iOS, Android</p>
+                <p>Kode Voucher akan dikirim melalui email dalam 24 jam setelah pembelian.</p>
+            </div>
+
+            <div class="buy-now">
+                <button onclick="openModal()">Beli Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal()">&times;</button>
+            <h2>Pilih Metode Pembelian</h2>
+            <a href="https://discord.com/" target="_blank">Beli melalui Discord</a>
+            <a href="https://wa.me/" target="_blank">Beli melalui WhatsApp</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 netshop.id. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function openModal() {
+            document.getElementById('purchaseModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('purchaseModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('purchaseModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>
