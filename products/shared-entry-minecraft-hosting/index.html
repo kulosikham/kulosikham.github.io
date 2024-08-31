@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk | netshop.id</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #292929;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-right: 20px;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f39c12;
+        }
+
+        nav ul.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                padding: 20px;
+            }
+
+            nav ul.active {
+                display: flex;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .hamburger {
+                display: flex;
+                position: absolute;
+                top: 35px;
+                right: 20px;
+            }
+
+            @keyframes slideDown {
+                from {
+                    transform: translateY(-100%);
+                }
+                to {
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .product-container {
+            padding: 50px 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-details h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .product-details .price {
+            font-size: 28px;
+            color: #f39c12;
+            margin-bottom: 20px;
+        }
+
+        .product-details p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .product-details .category {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #888;
+        }
+
+        .product-details .features ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .product-details .features li {
+            margin-bottom: 5px;
+        }
+
+        .product-select {
+            margin-bottom: 20px;
+        }
+
+        .product-select label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .product-select select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #888;
+        }
+
+        .product-table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+        }
+
+        .product-table th,
+        .product-table td {
+            padding: 10px;
+            border: 1px solid #888;
+            text-align: left;
+        }
+
+        .product-table th {
+            background-color: #333;
+        }
+
+        .selected-price {
+            font-size: 24px;
+            color: #f39c12;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .buy-now {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .buy-now button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #f39c12;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-now button:hover {
+            background-color: #e67e22;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .modal-content a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 18px;
+            color: white;
+            background-color: #f39c12;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content a:hover {
+            background-color: #e67e22;
+        }
+
+        .modal-content .close {
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            float: right;
+        }
+
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/allkey/netshop.display.iconnav.png" alt="netshop.id">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="product-container">
+        <div>
+            <img src="https://example.com/images/product-image.jpg" alt="Product Name" class="product-image">
+        </div>
+        <div class="product-details">
+            <h1>Product Name</h1>
+            <p class="category">Category: Hosting Services</p>
+            <p>Deskripsi Produk: Produk ini memberikan solusi hosting yang terjangkau untuk server Minecraft dengan performa tinggi dan stabilitas maksimal.</p>
+
+            <div class="product-select">
+                <label for="productType">Pilih Tipe Produk:</label>
+                <select id="productType" onchange="updateProductDetails()">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+            <table class="product-table" id="productTable">
+                <thead>
+                    <tr>
+                        <th>Fitur</th>
+                        <th>Detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Product details will be populated dynamically -->
+                </tbody>
+            </table>
+
+            <div class="selected-price" id="selectedPrice">
+                <!-- Harga akan muncul disini -->
+            </div>
+
+            <div class="buy-now">
+                <button onclick="openModal()">Beli Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal()">&times;</button>
+            <h2>Pilih Metode Pembelian</h2>
+            <a href="https://discord.com/" target="_blank">Beli melalui Discord</a>
+            <a href="https://example.com/purchase/" target="_blank">Beli melalui Website</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 netshop.id. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const productData = {
+            "entry": {
+                "name": "Entry",
+                "price": "IDR 7.99",
+                "features": {
+                    "RAM": "1GB",
+                    "Storage": "10GB SSD",
+                    "Bandwidth": "Unlimited",
+                    "Support": "Basic Support"
+                }
+            },
+            "standard": {
+                "name": "Standard",
+                "price": "IDR 14.99",
+                "features": {
+                    "RAM": "2GB",
+                    "Storage": "20GB SSD",
+                    "Bandwidth": "Unlimited",
+                    "Support": "24/7 Support"
+                }
+            },
+            "premium": {
+                "name": "Premium",
+                "price": "IDR 29.99",
+                "features": {
+                    "RAM": "4GB",
+                    "Storage": "40GB SSD",
+                    "Bandwidth": "Unlimited",
+                    "Support": "Premium Support"
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const productTypeSelect = document.getElementById('productType');
+            for (let key in productData) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.text = productData[key].name;
+                productTypeSelect.appendChild(option);
+            }
+            updateProductDetails(); // Load the initial product details
+        });
+
+        function updateProductDetails() {
+            const selectedType = document.getElementById('productType').value;
+            const productDetails = productData[selectedType];
+            const productTable = document.getElementById('productTable').querySelector('tbody');
+            const selectedPrice = document.getElementById('selectedPrice');
+
+            productTable.innerHTML = ''; // Clear previous content
+
+            for (let feature in productDetails.features) {
+                const row = document.createElement('tr');
+                const featureCell = document.createElement('td');
+                featureCell.textContent = feature;
+
+                const detailCell = document.createElement('td');
+                detailCell.textContent = productDetails.features[feature];
+
+                row.appendChild(featureCell);
+                row.appendChild(detailCell);
+                productTable.appendChild(row);
+            }
+
+            // Update the price
+            selectedPrice.textContent = "Harga: " + productDetails.price;
+        }
+
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        function openModal() {
+            document.getElementById('purchaseModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('purchaseModal').style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('purchaseModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>
