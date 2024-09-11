@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QIT.GG Minecraft Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1a1a1a;
+            color: #f2f2f2;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .hero {
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://example.com/minecraft-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .btn-join {
+            background-color: #4CAF50;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 50px;
+        }
+
+        .btn-join:hover {
+            background-color: #45a049;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .features .feature {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+
+        .features .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .features img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .features h3 {
+            margin: 15px 0 10px;
+            font-size: 1.8em;
+            color: #4CAF50;
+        }
+
+        .features p {
+            font-size: 1.1em;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1em;
+            color: #f2f2f2;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>QIT.GG Minecraft Server</h1>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#join">Join Us</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2>Discover Your Adventure</h2>
+        <p>Join the ultimate Minecraft experience with custom enchantments, powerful mobs, and epic battles!</p>
+        <a href="#join" class="btn-join">Join Now</a>
+    </div>
+
+    <section id="features">
+        <h2>Our Server Features</h2>
+        <div class="features">
+            <div class="feature">
+                <img src="https://example.com/feature1.jpg" alt="Feature 1">
+                <h3>Custom Worlds</h3>
+                <p>Explore beautifully crafted custom worlds full of mystery and adventure.</p>
+            </div>
+            <div class="feature">
+                <img src="https://example.com/feature2.jpg" alt="Feature 2">
+                <h3>Unique Plugins</h3>
+                <p>Experience gameplay like never before with unique server plugins and features.</p>
+            </div>
+            <div class="feature">
+                <img src="https://example.com/feature3.jpg" alt="Feature 3">
+                <h3>Epic PvP Battles</h3>
+                <p>Battle against other players in thrilling, fast-paced PvP arenas!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About QIT.GG</h2>
+        <p>QIT.GG is a Minecraft server built for players who seek a unique and immersive experience. Our dedicated team ensures that the server stays updated with the latest features and provides regular events to keep the community engaged. Whether you enjoy building, surviving, or battling, QIT.GG offers it all!</p>
+    </section>
+
+    <section id="join">
+        <h2>Join Us Now</h2>
+        <a href="#" class="btn-join">Play Now on QIT.GG</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 QIT.GG Minecraft Server. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
