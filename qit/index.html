@@ -26,6 +26,18 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            animation: slide-down 0.8s ease-out;
+        }
+
+        @keyframes slide-down {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         h1 {
@@ -67,18 +79,42 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
+            opacity: 0;
+            animation: fade-in 2s ease forwards;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .hero h2 {
             font-size: 3em;
             margin-bottom: 20px;
             text-transform: uppercase;
+            animation: fade-up 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fade-up {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .hero p {
             font-size: 1.5em;
             margin-bottom: 40px;
             max-width: 600px;
+            animation: fade-up 1.8s ease-in-out forwards;
         }
 
         .btn-join {
@@ -88,12 +124,28 @@
             border: none;
             color: white;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s ease;
             border-radius: 50px;
+            animation: bounce-in 2s ease-in-out forwards;
         }
 
         .btn-join:hover {
             background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         section {
@@ -105,6 +157,20 @@
             font-size: 2.5em;
             margin-bottom: 20px;
             color: #4CAF50;
+            position: relative;
+            opacity: 0;
+            animation: slide-up 1s ease-in-out forwards;
+        }
+
+        @keyframes slide-up {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .features {
@@ -120,11 +186,14 @@
             padding: 20px;
             border-radius: 10px;
             width: 300px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            animation: fade-in 1.5s ease forwards;
         }
 
         .features .feature:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
 
         .features img {
@@ -162,10 +231,11 @@
 <body>
 
     <header>
-        <h1>QIT.GG Minecraft Server</h1>
+        <h1>QIT.GG</h1>
         <nav>
             <a href="#features">Features</a>
             <a href="#about">About</a>
+            <a href="/store">Store</a>
             <a href="#join">Join Us</a>
         </nav>
     </header>
